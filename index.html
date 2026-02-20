@@ -412,12 +412,12 @@ h1 em{color:var(--gold);font-style:normal;}
     <p style="margin-bottom:1.5rem;">Our online assessment platform lets applicants evaluate their readiness before starting the formal migration process, saving time and money. Tests are designed by immigration experts with decades of experience.</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem;">
       <div class="info-card"><h4>Our Mission</h4><ul><li>Simplify global migration</li><li>Affordable assessments</li><li>Connect talent globally</li></ul></div>
-      <div class="info-card"><h4>Contact Us</h4><ul><li><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="167f78707956717a7974777a6677627e3875797b">[email&#160;protected]</a></li><li>+1 800 MIGRATE</li><li>Mon–Fri 9am–6pm UTC</li></ul></div>
+      <div class="info-card"><h4>Contact Us</h4><ul><li>info [at] globalpath.com</li><li>+1 800 MIGRATE</li><li>Mon–Fri 9am–6pm UTC</li></ul></div>
     </div>
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ===== DATA =====
 const C = {
   usa:{flag:'🇺🇸',name:'United States',tag:'Land of Opportunity — Work, Study & Settle',
@@ -441,7 +441,7 @@ const C = {
     visa:['Special Resident Retiree Visa SRRV','9g Pre-arranged Employment Visa','Student Visa','Special Investor Resident Visa','Tourist Visa — Extendable','Business Visa'],
     cost:['Rent 1BR: ₱15K–₱35K/mo','Food: ₱8K–₱15K/mo','Transport: ₱2K–₱5K/mo','Healthcare: Affordable private','Average Salary: ₱350K/yr']},
   mexico:{flag:'🇲🇽',name:'Mexico',tag:'Vibrant culture, affordable living, growing opportunities',
-    unis:['UNAM','Tecnológico de Monterrey','UAM','Universidad Iberoamericana','IPN','University of Guadalajara','ITAM','Anahuac University'],
+    unis:['UNAM','Tecnologico de Monterrey','UAM','Universidad Iberoamericana','IPN','University of Guadalajara','ITAM','Anahuac University'],
     jobs:['Software Developer ($800–$2,000/mo)','Engineer ($700–$1,500/mo)','Teacher ($400–$800/mo)','Marketing Specialist ($600–$1,200/mo)','Healthcare Worker ($500–$1,000/mo)','Tourism Professional ($400–$900/mo)'],
     visa:['Temporary Resident Visa','Permanent Resident Visa','Student Visa','Work Permit','Digital Nomad Visa','Investor Visa'],
     cost:['Rent 1BR: $300–$700/mo','Food: $200–$400/mo','Transport: $30–$80/mo','Healthcare: Low cost private','Average Salary: $12,000/yr']},
@@ -461,15 +461,15 @@ const C = {
     visa:['National Work Visa','Elective Residency Visa','Student Visa','Startup Visa','Self-Employment Visa','EU Blue Card','Family Reunification'],
     cost:['Rent 1BR: €700–€1,500/mo','Food: €300–€500/mo','Transport: €50–€120/mo','Public healthcare available','Average Salary: €29,000/yr']},
   germany:{flag:'🇩🇪',name:'Germany',tag:'Europe\'s powerhouse — engineering, tech and stability',
-    unis:['TU Munich','LMU Munich','Heidelberg University','Humboldt University Berlin','RWTH Aachen','FU Berlin','University of Hamburg','University of Stuttgart','Göttingen University','TU Berlin'],
+    unis:['TU Munich','LMU Munich','Heidelberg University','Humboldt University Berlin','RWTH Aachen','FU Berlin','University of Hamburg','University of Stuttgart','Gottingen University','TU Berlin'],
     jobs:['Software Engineer (€55K–€90K)','Mechanical Engineer (€50K–€80K)','Nurse (€35K–€55K)','Data Scientist (€55K–€85K)','Financial Analyst (€45K–€75K)','Research Scientist (€45K–€75K)','Skilled Tradesperson (€35K–€55K)'],
     visa:['EU Blue Card','Skilled Immigration Visa','Student Visa','Job Seeker Visa','Freelance Visa','Family Reunification','Permanent Residence'],
     cost:['Rent 1BR: €800–€1,600/mo','Food: €250–€450/mo','Transport: €80–€150/mo','Public health insurance','Average Salary: €45,000/yr']},
   france:{flag:'🇫🇷',name:'France',tag:'Culture, fashion, tech — a world destination',
-    unis:['École Normale Supérieure','École Polytechnique','Paris-Saclay','Sorbonne University','Sciences Po','HEC Paris','INSEAD','University of Paris','Grenoble INP','ESSEC Business School'],
+    unis:['Ecole Normale Superieure','Ecole Polytechnique','Paris-Saclay','Sorbonne University','Sciences Po','HEC Paris','INSEAD','University of Paris','Grenoble INP','ESSEC Business School'],
     jobs:['Software Engineer (€45K–€75K)','Marketing Manager (€40K–€65K)','Finance Analyst (€42K–€70K)','Nurse (€28K–€42K)','Chef (€25K–€45K)','Fashion Designer (€30K–€55K)','Engineer (€40K–€70K)'],
     visa:['Talent Passport Visa','Student Visa','Work Permit','EU Blue Card','Entrepreneur Visa','Working Holiday','Family Visa'],
-    cost:['Rent 1BR: €800–€1,600/mo','Food: €300–€500/mo','Transport: €75–€130/mo','French Sécurité Sociale','Average Salary: €39,000/yr']}
+    cost:['Rent 1BR: €800–€1,600/mo','Food: €300–€500/mo','Transport: €75–€130/mo','French Securite Sociale','Average Salary: €39,000/yr']}
 };
 
 const QS = [
@@ -658,4 +658,13 @@ function submitReg() {
   if (!name || !email || !phone) { alert('Please fill all required fields.'); return; }
   var id = 'GP-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2,6).toUpperCase();
   document.getElementById('reg-id').textContent = id;
-  document.getElementById('r
+  document.getElementById('reg-form-wrap').style.display = 'none';
+  document.getElementById('reg-success-wrap').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+// ===== INIT =====
+window.onload = function() { show('home'); };
+</script>
+</body>
+</html>
