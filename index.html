@@ -184,10 +184,10 @@ h1 em{color:var(--gold);font-style:normal;}
 <nav>
   <div class="logo">Global<span>Path</span></div>
   <ul class="nav-links">
-    <li><a onclick="show('home')">Home</a></li>
-    <li><a onclick="show('destinations')">Destinations</a></li>
-    <li><a onclick="show('exam')">Take Exam</a></li>
-    <li><a onclick="show('about')">About</a></li>
+    <li><a onclick="show('home');return false;">Home</a></li>
+    <li><a onclick="show('destinations');return false;">Destinations</a></li>
+    <li><a onclick="show('exam');return false;">Take Exam</a></li>
+    <li><a onclick="show('about');return false;">About</a></li>
   </ul>
   <button class="nav-cta" onclick="show('exam')">Start Assessment — $20</button>
 </nav>
@@ -412,12 +412,12 @@ h1 em{color:var(--gold);font-style:normal;}
     <p style="margin-bottom:1.5rem;">Our online assessment platform lets applicants evaluate their readiness before starting the formal migration process, saving time and money. Tests are designed by immigration experts with decades of experience.</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem;">
       <div class="info-card"><h4>Our Mission</h4><ul><li>Simplify global migration</li><li>Affordable assessments</li><li>Connect talent globally</li></ul></div>
-      <div class="info-card"><h4>Contact Us</h4><ul><li>info@globalpath.com</li><li>+1 800 MIGRATE</li><li>Mon–Fri 9am–6pm UTC</li></ul></div>
+      <div class="info-card"><h4>Contact Us</h4><ul><li><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="167f78707956717a7974777a6677627e3875797b">[email&#160;protected]</a></li><li>+1 800 MIGRATE</li><li>Mon–Fri 9am–6pm UTC</li></ul></div>
     </div>
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ===== DATA =====
 const C = {
   usa:{flag:'🇺🇸',name:'United States',tag:'Land of Opportunity — Work, Study & Settle',
@@ -528,7 +528,11 @@ function openCountry(code) {
 }
 
 function switchTab(i) {
-  document.querySelectorAll('.tab').forEach(function(t, j){ t.classList.toggle('active', j === i); });
+  var tabBtns = document.querySelectorAll("#page-country .tab");
+  var tabContents = document.querySelectorAll("#page-country .tab-content");
+  tabBtns.forEach(function(t, j){ t.classList.toggle("active", j === i); });
+  tabContents.forEach(function(t, j){ t.classList.toggle("active", j === i); });
+}
   document.querySelectorAll('.tab-content').forEach(function(t, j){ t.classList.toggle('active', j === i); });
 }
 
@@ -654,13 +658,4 @@ function submitReg() {
   if (!name || !email || !phone) { alert('Please fill all required fields.'); return; }
   var id = 'GP-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2,6).toUpperCase();
   document.getElementById('reg-id').textContent = id;
-  document.getElementById('reg-form-wrap').style.display = 'none';
-  document.getElementById('reg-success-wrap').style.display = 'block';
-  window.scrollTo(0, 0);
-}
-
-// ===== INIT =====
-window.onload = function() { show('home'); };
-</script>
-</body>
-</html>
+  document.getElementById('r
