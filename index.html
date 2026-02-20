@@ -902,4 +902,11 @@ function submitRegistration() {
 }
 
 // ============ INIT ============
-document.addEventListener('DOMContentLoaded', ()=>{ initExamSelector(); }
+document.addEventListener('DOMContentLoaded', function() {
+  initExamSelector();
+  // Make sure home page is visible on load
+  showPage('home');
+});
+</script>
+</body>
+</html>
