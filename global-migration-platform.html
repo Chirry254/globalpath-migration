@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GlobalPath Migration | Your Journey Abroad Starts Here</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --dark: #0A0E1A;
+    --darker: #060810;
+    --mid: #141929;
+    --surface: #1A2035;
+    --border: rgba(201,168,76,0.2);
+    --text: #E8EAF0;
+    --muted: #8892AA;
+    --accent: #4A90D9;
+    --green: #2ECC8F;
+    --red: #E05C5C;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'DM Sans',sans-serif; background:var(--dark); color:var(--text); overflow-x:hidden; }
+  
+  /* NAV */
+  nav { position:fixed; top:0; width:100%; z-index:1000; background:rgba(10,14,26,0.95); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:0 5%; display:flex; align-items:center; justify-content:space-between; height:65px; }
+  .logo { font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--gold); letter-spacing:1px; }
+  .logo span { color:var(--text); }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a { color:var(--muted); text-decoration:none; font-size:.88rem; font-weight:500; transition:.2s; }
+  .nav-links a:hover { color:var(--gold); }
+  .nav-cta { background:var(--gold); color:var(--dark); padding:.5rem 1.2rem; border-radius:4px; font-weight:600; font-size:.85rem; cursor:pointer; border:none; transition:.2s; }
+  .nav-cta:hover { background:var(--gold-light); }
+
+  /* SECTIONS */
+  section { padding:80px 5%; }
+  .page { display:none; }
+  .page.active { display:block; }
+  
+  /* HERO */
+  #home { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding-top:120px; position:relative; overflow:hidden; }
+  .hero-bg { position:absolute; inset:0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 80% 60%, rgba(74,144,217,0.06) 0%, transparent 60%); }
+  .hero-grid { position:absolute; inset:0; background-image: linear-gradient(rgba(201,168,76,0.04) 1px,transparent 1px), linear-gradient(90deg,rgba(201,168,76,0.04) 1px,transparent 1px); background-size:60px 60px; }
+  .hero-content { position:relative; max-width:750px; }
+  .hero-badge { display:inline-flex; align-items:center; gap:.5rem; background:rgba(201,168,76,0.12); border:1px solid var(--border); padding:.4rem 1rem; border-radius:20px; font-size:.8rem; color:var(--gold); margin-bottom:2rem; }
+  .hero-badge::before { content:'✦'; }
+  h1 { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,5vw,4rem); line-height:1.1; color:var(--text); margin-bottom:1.5rem; }
+  h1 em { color:var(--gold); font-style:normal; }
+  .hero-sub { font-size:1.1rem; color:var(--muted); line-height:1.8; max-width:550px; margin-bottom:2.5rem; }
+  .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
+  .btn-primary { background:var(--gold); color:var(--dark); padding:.85rem 2rem; border-radius:4px; font-weight:700; font-size:.95rem; cursor:pointer; border:none; transition:.2s; }
+  .btn-primary:hover { background:var(--gold-light); transform:translateY(-1px); }
+  .btn-outline { background:transparent; color:var(--gold); padding:.85rem 2rem; border-radius:4px; font-weight:600; font-size:.95rem; cursor:pointer; border:1px solid var(--border); transition:.2s; }
+  .btn-outline:hover { border-color:var(--gold); background:rgba(201,168,76,0.05); }
+  .stats-row { display:flex; gap:3rem; margin-top:4rem; flex-wrap:wrap; }
+  .stat { }
+  .stat-num { font-family:'Playfair Display',serif; font-size:2rem; color:var(--gold); font-weight:700; }
+  .stat-label { font-size:.8rem; color:var(--muted); margin-top:.2rem; }
+  .floating-flags { position:absolute; right:5%; top:50%; transform:translateY(-50%); display:grid; grid-template-columns:repeat(3,1fr); gap:.8rem; opacity:.7; }
+  .flag-card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:.8rem; text-align:center; font-size:1.8rem; cursor:pointer; transition:.3s; }
+  .flag-card:hover { border-color:var(--gold); transform:scale(1.05); opacity:1; }
+  .flag-label { font-size:.65rem; color:var(--muted); margin-top:.3rem; }
+
+  /* COUNTRY CARDS */
+  .section-title { font-family:'Playfair Display',serif; font-size:2.2rem; margin-bottom:.5rem; }
+  .section-sub { color:var(--muted); margin-bottom:3rem; font-size:.95rem; }
+  .countries-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:1.2rem; }
+  .country-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:1.5rem; cursor:pointer; transition:.3s; position:relative; overflow:hidden; }
+  .country-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--gold),var(--accent)); transform:scaleX(0); transition:.3s; }
+  .country-card:hover::before { transform:scaleX(1); }
+  .country-card:hover { border-color:rgba(201,168,76,0.4); transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,0.3); }
+  .c-flag { font-size:2.5rem; margin-bottom:.8rem; }
+  .c-name { font-family:'Playfair Display',serif; font-size:1.1rem; margin-bottom:.3rem; }
+  .c-tag { font-size:.75rem; color:var(--muted); }
+  .c-arrow { position:absolute; bottom:1rem; right:1rem; color:var(--gold); opacity:0; transition:.2s; }
+  .country-card:hover .c-arrow { opacity:1; }
+
+  /* COUNTRY DETAIL */
+  #country-detail { display:none; }
+  #country-detail.active { display:block; }
+  .detail-hero { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:2.5rem; margin-bottom:2rem; display:flex; align-items:center; gap:2rem; flex-wrap:wrap; }
+  .detail-flag { font-size:4rem; }
+  .detail-info h2 { font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:.3rem; }
+  .detail-info p { color:var(--muted); }
+  .tabs { display:flex; gap:.5rem; margin-bottom:2rem; flex-wrap:wrap; }
+  .tab { padding:.6rem 1.4rem; border-radius:4px; cursor:pointer; font-size:.85rem; font-weight:500; border:1px solid var(--border); background:transparent; color:var(--muted); transition:.2s; }
+  .tab.active, .tab:hover { background:var(--gold); color:var(--dark); border-color:var(--gold); }
+  .tab-content { display:none; }
+  .tab-content.active { display:block; }
+  .info-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.2rem; }
+  .info-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:1.5rem; }
+  .info-card h4 { color:var(--gold); font-size:.85rem; margin-bottom:.8rem; text-transform:uppercase; letter-spacing:.5px; }
+  .info-card ul { list-style:none; }
+  .info-card ul li { color:var(--text); font-size:.88rem; padding:.35rem 0; border-bottom:1px solid rgba(255,255,255,0.05); display:flex; align-items:center; gap:.5rem; }
+  .info-card ul li::before { content:'→'; color:var(--gold); font-size:.75rem; }
+
+  /* EXAM */
+  #exam-page { display:none; }
+  #exam-page.active { display:block; }
+  .exam-gate { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:3rem; max-width:600px; margin:2rem auto; text-align:center; }
+  .exam-gate h3 { font-family:'Playfair Display',serif; font-size:1.8rem; margin-bottom:1rem; }
+  .exam-gate p { color:var(--muted); margin-bottom:2rem; line-height:1.8; }
+  .price-badge { font-family:'Playfair Display',serif; font-size:3rem; color:var(--gold); margin:1.5rem 0; }
+  .price-badge span { font-size:1rem; color:var(--muted); font-family:'DM Sans',sans-serif; }
+  .exam-features { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin:1.5rem 0; }
+  .exam-feat { background:rgba(201,168,76,0.08); border:1px solid var(--border); padding:.5rem 1rem; border-radius:4px; font-size:.8rem; color:var(--muted); }
+
+  /* PAYMENT */
+  #payment-page { display:none; }
+  #payment-page.active { display:block; }
+  .payment-form { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:2.5rem; max-width:480px; margin:2rem auto; }
+  .payment-form h3 { font-family:'Playfair Display',serif; font-size:1.5rem; margin-bottom:2rem; }
+  .form-group { margin-bottom:1.2rem; }
+  .form-group label { display:block; font-size:.8rem; color:var(--muted); margin-bottom:.4rem; text-transform:uppercase; letter-spacing:.5px; }
+  .form-group input, .form-group select { width:100%; background:var(--darker); border:1px solid var(--border); border-radius:6px; padding:.75rem 1rem; color:var(--text); font-family:'DM Sans',sans-serif; font-size:.9rem; outline:none; transition:.2s; }
+  .form-group input:focus, .form-group select:focus { border-color:var(--gold); }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .secure-badges { display:flex; gap:.5rem; justify-content:center; margin-top:1rem; flex-wrap:wrap; }
+  .secure-badge { font-size:.7rem; color:var(--muted); background:rgba(255,255,255,0.04); padding:.3rem .7rem; border-radius:3px; display:flex; align-items:center; gap:.3rem; }
+
+  /* QUIZ */
+  #quiz-page { display:none; }
+  #quiz-page.active { display:block; }
+  .quiz-container { max-width:700px; margin:0 auto; }
+  .quiz-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:2rem; }
+  .quiz-progress { flex:1; height:6px; background:var(--mid); border-radius:3px; margin:0 1rem; overflow:hidden; }
+  .quiz-progress-bar { height:100%; background:linear-gradient(90deg,var(--gold),var(--gold-light)); border-radius:3px; transition:.5s; }
+  .quiz-q-num { font-size:.85rem; color:var(--muted); white-space:nowrap; }
+  .question-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:2.5rem; margin-bottom:1.5rem; }
+  .question-card h3 { font-family:'Playfair Display',serif; font-size:1.25rem; margin-bottom:1.5rem; line-height:1.5; }
+  .options { display:flex; flex-direction:column; gap:.8rem; }
+  .option { background:var(--darker); border:1px solid var(--border); border-radius:8px; padding:1rem 1.2rem; cursor:pointer; transition:.2s; display:flex; align-items:center; gap:1rem; font-size:.9rem; }
+  .option:hover { border-color:rgba(201,168,76,0.4); background:rgba(201,168,76,0.04); }
+  .option.correct { border-color:var(--green); background:rgba(46,204,143,0.08); }
+  .option.wrong { border-color:var(--red); background:rgba(224,92,92,0.08); }
+  .option.selected { border-color:var(--gold); background:rgba(201,168,76,0.08); }
+  .opt-letter { width:28px; height:28px; border-radius:50%; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:600; flex-shrink:0; }
+  .feedback { margin-top:1rem; padding:1rem; border-radius:6px; font-size:.85rem; display:none; }
+  .feedback.show { display:block; }
+  .feedback.correct { background:rgba(46,204,143,0.1); border:1px solid rgba(46,204,143,0.3); color:#2ECC8F; }
+  .feedback.wrong { background:rgba(224,92,92,0.1); border:1px solid rgba(224,92,92,0.3); color:#E05C5C; }
+  .quiz-nav { display:flex; justify-content:flex-end; gap:1rem; }
+
+  /* RESULTS */
+  .results-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:3rem; max-width:600px; margin:2rem auto; text-align:center; }
+  .score-ring { width:140px; height:140px; border-radius:50%; background:conic-gradient(var(--gold) var(--score-deg,0deg), var(--mid) 0); display:flex; align-items:center; justify-content:center; margin:1.5rem auto; position:relative; }
+  .score-inner { width:110px; height:110px; border-radius:50%; background:var(--surface); display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .score-num { font-family:'Playfair Display',serif; font-size:2rem; color:var(--gold); }
+  .score-total { font-size:.75rem; color:var(--muted); }
+  .score-label { font-size:1.1rem; font-weight:600; margin:1rem 0 .5rem; }
+  .score-feedback { color:var(--muted); font-size:.9rem; margin-bottom:2rem; }
+  .breakdown-grid { display:grid; grid-template-columns:1fr 1fr; gap:.8rem; text-align:left; margin:1.5rem 0; }
+  .b-item { background:var(--darker); border-radius:6px; padding:.8rem; }
+  .b-label { font-size:.75rem; color:var(--muted); margin-bottom:.2rem; }
+  .b-val { font-weight:600; }
+
+  /* REGISTRATION */
+  #reg-page { display:none; }
+  #reg-page.active { display:block; }
+  .reg-form { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:2.5rem; max-width:540px; margin:2rem auto; }
+  .reg-form h3 { font-family:'Playfair Display',serif; font-size:1.5rem; margin-bottom:.5rem; }
+  .reg-form p { color:var(--muted); font-size:.85rem; margin-bottom:2rem; }
+  .success-screen { text-align:center; padding:3rem 2rem; }
+  .success-icon { font-size:4rem; margin-bottom:1rem; }
+  .success-screen h3 { font-family:'Playfair Display',serif; font-size:1.8rem; color:var(--green); margin-bottom:1rem; }
+  .success-screen p { color:var(--muted); margin-bottom:2rem; }
+  .reg-id { font-family:'DM Mono',monospace; background:var(--darker); border:1px solid var(--border); padding:.5rem 1rem; border-radius:4px; font-size:.85rem; color:var(--gold); display:inline-block; margin:1rem 0; }
+
+  /* EXAM SELECTOR */
+  .exam-countries { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:1rem; margin:2rem 0; }
+  .exam-country-btn { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:1.2rem; text-align:center; cursor:pointer; transition:.3s; }
+  .exam-country-btn:hover, .exam-country-btn.selected { border-color:var(--gold); background:rgba(201,168,76,0.08); }
+  .exam-country-btn .flag { font-size:2rem; margin-bottom:.5rem; }
+  .exam-country-btn .name { font-size:.8rem; color:var(--muted); }
+
+  /* FOOTER */
+  footer { background:var(--darker); border-top:1px solid var(--border); padding:3rem 5%; display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:2rem; }
+  .footer-brand .logo { display:block; margin-bottom:.8rem; }
+  .footer-brand p { color:var(--muted); font-size:.82rem; line-height:1.8; }
+  .footer-col h4 { color:var(--gold); font-size:.8rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:1rem; }
+  .footer-col ul { list-style:none; }
+  .footer-col ul li { margin-bottom:.5rem; }
+  .footer-col ul li a { color:var(--muted); font-size:.82rem; text-decoration:none; transition:.2s; }
+  .footer-col ul li a:hover { color:var(--gold); }
+  .footer-bottom { background:var(--darker); border-top:1px solid var(--border); padding:1.2rem 5%; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.5rem; }
+  .footer-bottom p { color:var(--muted); font-size:.78rem; }
+
+  /* UTILITY */
+  .back-btn { display:inline-flex; align-items:center; gap:.5rem; color:var(--muted); font-size:.85rem; cursor:pointer; margin-bottom:2rem; padding:.5rem 0; transition:.2s; background:none; border:none; }
+  .back-btn:hover { color:var(--gold); }
+  .alert { background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3); border-radius:6px; padding:1rem 1.2rem; font-size:.85rem; color:var(--gold); margin-bottom:1.5rem; display:flex; align-items:center; gap:.5rem; }
+
+  .pay-method-card { background:var(--darker); border:2px solid var(--border); border-radius:10px; padding:1rem; text-align:center; cursor:pointer; transition:.25s; }
+  .pay-method-card:hover { border-color:rgba(201,168,76,0.5); background:rgba(201,168,76,0.04); }
+  .pay-method-card.selected { border-color:var(--gold); background:rgba(201,168,76,0.08); }
+  .pm-icon { font-size:1.8rem; margin-bottom:.4rem; }
+  .pm-name { font-size:.85rem; font-weight:600; color:var(--text); }
+  .pm-sub { font-size:.72rem; color:var(--muted); margin-top:.2rem; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  .animate { animation:fadeIn .5s ease forwards; }
+
+  @media(max-width:768px) {
+    .floating-flags { display:none; }
+    .nav-links { display:none; }
+    footer { grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Global<span>Path</span></div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')">Home</a></li>
+    <li><a href="#" onclick="showPage('destinations')">Destinations</a></li>
+    <li><a href="#" onclick="showPage('exam-selector')">Take Exam</a></li>
+    <li><a href="#" onclick="showPage('about')">About</a></li>
+  </ul>
+  <button class="nav-cta" onclick="showPage('exam-selector')">Start Assessment — $20</button>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="home" class="page active" style="padding-top:0">
+<section id="home-sec" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:120px;position:relative;overflow:hidden;">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content animate">
+    <div class="hero-badge">Trusted Global Migration Platform</div>
+    <h1>Your Path to <em>Global Opportunities</em> Starts Here</h1>
+    <p class="hero-sub">We help you migrate to 10 countries worldwide — USA, UK, Australia, Philippines, Mexico, Qatar, Dubai, Italy, Germany & France. Take our certified assessment test and begin your journey today.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showPage('exam-selector')">Take Assessment — $20</button>
+      <button class="btn-outline" onclick="showPage('destinations')">Explore Destinations</button>
+    </div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num">50K+</div><div class="stat-label">Successful Migrants</div></div>
+      <div class="stat"><div class="stat-num">10</div><div class="stat-label">Countries Covered</div></div>
+      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Partner Universities</div></div>
+      <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Satisfaction Rate</div></div>
+    </div>
+  </div>
+  <div class="floating-flags">
+    <div class="flag-card" onclick="openCountry('usa')"><div>🇺🇸</div><div class="flag-label">USA</div></div>
+    <div class="flag-card" onclick="openCountry('uk')"><div>🇬🇧</div><div class="flag-label">UK</div></div>
+    <div class="flag-card" onclick="openCountry('australia')"><div>🇦🇺</div><div class="flag-label">Australia</div></div>
+    <div class="flag-card" onclick="openCountry('philippines')"><div>🇵🇭</div><div class="flag-label">Philippines</div></div>
+    <div class="flag-card" onclick="openCountry('mexico')"><div>🇲🇽</div><div class="flag-label">Mexico</div></div>
+    <div class="flag-card" onclick="openCountry('qatar')"><div>🇶🇦</div><div class="flag-label">Qatar</div></div>
+    <div class="flag-card" onclick="openCountry('dubai')"><div>🇦🇪</div><div class="flag-label">Dubai</div></div>
+    <div class="flag-card" onclick="openCountry('italy')"><div>🇮🇹</div><div class="flag-label">Italy</div></div>
+    <div class="flag-card" onclick="openCountry('germany')"><div>🇩🇪</div><div class="flag-label">Germany</div></div>
+    <div class="flag-card" onclick="openCountry('france')"><div>🇫🇷</div><div class="flag-label">France</div></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section style="background:var(--mid);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="section-title">How It Works</div>
+  <p class="section-sub">Four simple steps to your new life abroad</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:2rem;margin-top:1rem;">
+    <div style="text-align:center;padding:1.5rem;">
+      <div style="font-size:2.5rem;margin-bottom:1rem;">🌍</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:.5rem;">1. Choose Destination</div>
+      <p style="color:var(--muted);font-size:.85rem;line-height:1.7">Browse our 10 destination countries and explore universities, jobs, and visa types.</p>
+    </div>
+    <div style="text-align:center;padding:1.5rem;">
+      <div style="font-size:2.5rem;margin-bottom:1rem;">📝</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:.5rem;">2. Take Assessment</div>
+      <p style="color:var(--muted);font-size:.85rem;line-height:1.7">Pay $20 and take our certified migration aptitude test. Get instant scores and feedback.</p>
+    </div>
+    <div style="text-align:center;padding:1.5rem;">
+      <div style="font-size:2.5rem;margin-bottom:1rem;">📊</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:.5rem;">3. Get Results</div>
+      <p style="color:var(--muted);font-size:.85rem;line-height:1.7">Receive a detailed eligibility report with your score, strengths, and recommended pathways.</p>
+    </div>
+    <div style="text-align:center;padding:1.5rem;">
+      <div style="font-size:2.5rem;margin-bottom:1rem;">✈️</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:.5rem;">4. Register & Migrate</div>
+      <p style="color:var(--muted);font-size:.85rem;line-height:1.7">Complete your profile registration and connect with our migration consultants.</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- DESTINATIONS PAGE -->
+<div id="destinations" class="page">
+<section>
+  <button class="back-btn" onclick="showPage('home')">← Back to Home</button>
+  <div class="section-title">Destination Countries</div>
+  <p class="section-sub">Click any country to explore universities, jobs, and migration pathways</p>
+  <div class="countries-grid">
+    <div class="country-card" onclick="openCountry('usa')"><div class="c-flag">🇺🇸</div><div class="c-name">United States</div><div class="c-tag">Work • Study • Settle</div><div class="c-arrow">→</div></div>
+    <div class="country-card" onclick="openCountry('uk')"><div class="c-flag">🇬🇧</div><div class="c-name">United Kingdom</div><div class="c-tag">Work • Study • Settle</div><div class="c-arrow">→</div></div>
+    <div class="country-card" onclick="openCountry('australia')"><div class="c-flag">🇦🇺</div><div class="c-name">Australia</div><div class="c-tag">Work • Study • Settle</div><div class="c-arrow">→</div></div>
+    <div class="country-card" onclick="openCountry('philippines')"><div class="c-flag">🇵🇭</div><div class="c-name">Philippines</div><div class="c-tag">Work • Retire • Business</div><div class="c-arrow">→</div></div>
+    <div class="country-card" onclick="openCountry('mexico')"><div class="c-flag">🇲🇽</div><div class="c-name">Mexico</div><div class="c-tag">Work • Retire • Business</div><div class="c-arrow">→</div></div>
+    <div class="country-card" onclick="openCountry('qatar')"><div class="c-flag">🇶🇦</div><div class="c-name">Qatar</div><div class="c-tag">Work • Business</div><div class="c-arrow">→</div></div>
+    <div class="country-card" onclick="openCountry('dubai')"><div class="c-flag">🇦🇪</div><div class="c-name">Dubai, UAE</div><div class="c-tag">Work • Business • Lifestyle</div><div class="c-arrow">→</div></div>
+    <div class="country-card" onclick="openCountry('italy')"><div class="c-flag">🇮🇹</div><div class="c-name">Italy</div><div class="c-tag">Work • Study • Settle</div><div class="c-arrow">→</div></div>
+    <div class="country-card" onclick="openCountry('germany')"><div class="c-flag">🇩🇪</div><div class="c-name">Germany</div><div class="c-tag">Work • Study • Settle</div><div class="c-arrow">→</div></div>
+    <div class="country-card" onclick="openCountry('france')"><div class="c-flag">🇫🇷</div><div class="c-name">France</div><div class="c-tag">Work • Study • Settle</div><div class="c-arrow">→</div></div>
+  </div>
+</section>
+</div>
+
+<!-- COUNTRY DETAIL PAGE -->
+<div id="country-detail" class="page">
+<section>
+  <button class="back-btn" onclick="showPage('destinations')">← Back to Destinations</button>
+  <div class="detail-hero animate">
+    <div class="detail-flag" id="detail-flag"></div>
+    <div class="detail-info">
+      <h2 id="detail-name"></h2>
+      <p id="detail-tagline"></p>
+    </div>
+    <button class="btn-primary" style="margin-left:auto" onclick="showPage('exam-selector')">Take Assessment — $20</button>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('unis')">🎓 Universities</button>
+    <button class="tab" onclick="switchTab('jobs')">💼 Top Jobs</button>
+    <button class="tab" onclick="switchTab('visa')">📋 Visa Types</button>
+    <button class="tab" onclick="switchTab('cost')">💰 Cost of Living</button>
+  </div>
+  <div class="tab-content active" id="tab-unis">
+    <div class="info-grid" id="unis-list"></div>
+  </div>
+  <div class="tab-content" id="tab-jobs">
+    <div class="info-grid" id="jobs-list"></div>
+  </div>
+  <div class="tab-content" id="tab-visa">
+    <div class="info-grid" id="visa-list"></div>
+  </div>
+  <div class="tab-content" id="tab-cost">
+    <div class="info-grid" id="cost-list"></div>
+  </div>
+</section>
+</div>
+
+<!-- EXAM SELECTOR -->
+<div id="exam-selector" class="page">
+<section>
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+  <div class="exam-gate animate">
+    <h3>Migration Assessment Test</h3>
+    <p>Our certified assessment evaluates your eligibility, language skills, and knowledge of your target country. Get instant scores and a detailed report.</p>
+    <div class="price-badge">$20 <span>one-time fee</span></div>
+    <div class="exam-features">
+      <span class="exam-feat">✓ 15 Questions</span>
+      <span class="exam-feat">✓ Instant Results</span>
+      <span class="exam-feat">✓ Detailed Feedback</span>
+      <span class="exam-feat">✓ Eligibility Report</span>
+    </div>
+    <p style="color:var(--muted);font-size:.85rem;margin:1rem 0">Select your target destination:</p>
+    <div class="exam-countries" id="exam-country-grid"></div>
+    <button class="btn-primary" id="start-exam-btn" style="width:100%;margin-top:1rem;" onclick="showPayment()">Pay $20 & Start Assessment</button>
+  </div>
+</section>
+</div>
+
+<!-- PAYMENT PAGE -->
+<div id="payment-page" class="page">
+<section>
+  <button class="back-btn" onclick="showPage('exam-selector')">← Back</button>
+  <div class="alert">🔒 Secure payment powered by M-Changa — Multiple payment methods accepted</div>
+
+  <div class="payment-form animate" style="max-width:520px;">
+    <h3>Complete Payment — $20 USD</h3>
+    <p style="color:var(--muted);font-size:.85rem;margin-bottom:1.5rem">Choose your preferred payment method below. You will be redirected to our secure M-Changa payment page.</p>
+
+    <!-- Payment Methods -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.5rem;">
+      <div class="pay-method-card selected" id="pm-mpesa" onclick="selectMethod('mpesa')">
+        <div class="pm-icon">📱</div>
+        <div class="pm-name">M-Pesa</div>
+        <div class="pm-sub">Safaricom</div>
+      </div>
+      <div class="pay-method-card" id="pm-airtel" onclick="selectMethod('airtel')">
+        <div class="pm-icon">📲</div>
+        <div class="pm-name">Airtel Money</div>
+        <div class="pm-sub">Airtel</div>
+      </div>
+      <div class="pay-method-card" id="pm-visa" onclick="selectMethod('visa')">
+        <div class="pm-icon">💳</div>
+        <div class="pm-name">Visa / Mastercard</div>
+        <div class="pm-sub">Debit or Credit</div>
+      </div>
+      <div class="pay-method-card" id="pm-paypal" onclick="selectMethod('paypal')">
+        <div class="pm-icon">🅿️</div>
+        <div class="pm-name">PayPal</div>
+        <div class="pm-sub">International</div>
+      </div>
+    </div>
+
+    <!-- Name & Email before redirect -->
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" id="pay-name" placeholder="Your full name">
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="pay-email" placeholder="your@email.com">
+    </div>
+
+    <!-- Amount summary -->
+    <div style="background:var(--darker);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem;margin:1rem 0;display:flex;justify-content:space-between;align-items:center;">
+      <span style="color:var(--muted);font-size:.88rem;">Migration Assessment Fee</span>
+      <span style="font-family:'Playfair Display',serif;color:var(--gold);font-size:1.3rem;font-weight:700;">$20 USD</span>
+    </div>
+
+    <button class="btn-primary" style="width:100%;padding:1.1rem;font-size:1rem;" onclick="goToMchanga()">
+      Pay Now — Proceed to Secure Checkout →
+    </button>
+
+    <div class="secure-badges" style="margin-top:1rem;">
+      <span class="secure-badge">📱 M-Pesa</span>
+      <span class="secure-badge">📲 Airtel Money</span>
+      <span class="secure-badge">💳 Visa/MC</span>
+      <span class="secure-badge">🅿️ PayPal</span>
+      <span class="secure-badge">🔒 SSL Secure</span>
+    </div>
+
+    <p style="text-align:center;color:var(--muted);font-size:.75rem;margin-top:1rem;">
+      Powered by <strong style="color:var(--gold)">M-Changa Africa</strong> — Trusted secure payment platform.<br>
+      You will be redirected to complete payment, then return here to start your exam.
+    </p>
+  </div>
+
+  <!-- After payment return -->
+  <div id="payment-confirm" style="display:none;max-width:520px;margin:0 auto;">
+    <div class="payment-form animate" style="text-align:center;">
+      <div style="font-size:3.5rem;margin-bottom:1rem;">✅</div>
+      <h3 style="font-family:'Playfair Display',serif;color:var(--green);margin-bottom:.8rem;">Payment Confirmed!</h3>
+      <p style="color:var(--muted);margin-bottom:1.5rem;">Thank you! Your payment has been received. Click below to start your migration assessment.</p>
+      <button class="btn-primary" style="width:100%;padding:1rem;" onclick="startQuiz()">Start My Assessment Now →</button>
+    </div>
+  </div>
+
+</section>
+</div>
+
+<!-- QUIZ PAGE -->
+<div id="quiz-page" class="page">
+<section>
+  <div class="quiz-container animate">
+    <div class="quiz-header">
+      <span id="quiz-country-label" style="font-size:.85rem;color:var(--gold)"></span>
+      <div class="quiz-progress"><div class="quiz-progress-bar" id="progress-bar"></div></div>
+      <span class="quiz-q-num" id="q-num-label">1 / 15</span>
+    </div>
+    <div id="question-area"></div>
+    <div class="quiz-nav">
+      <button class="btn-primary" id="next-btn" onclick="nextQuestion()" style="display:none">Next Question →</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- RESULTS PAGE -->
+<div id="results-page" class="page">
+<section>
+  <div class="results-card animate" id="results-card">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:.5rem">Your Assessment Results</h2>
+    <p style="color:var(--muted);font-size:.85rem" id="results-country-label"></p>
+    <div class="score-ring" id="score-ring">
+      <div class="score-inner">
+        <div class="score-num" id="score-num">0</div>
+        <div class="score-total" id="score-total">/ 15</div>
+      </div>
+    </div>
+    <div class="score-label" id="score-label"></div>
+    <div class="score-feedback" id="score-feedback"></div>
+    <div class="breakdown-grid" id="breakdown-grid"></div>
+    <button class="btn-primary" style="width:100%;margin-top:1rem;" onclick="showPage('reg-page')">Complete Registration →</button>
+    <button class="btn-outline" style="width:100%;margin-top:.8rem;" onclick="showPage('exam-selector')">Retake Assessment</button>
+  </div>
+</section>
+</div>
+
+<!-- REGISTRATION PAGE -->
+<div id="reg-page" class="page">
+<section>
+  <div id="reg-form-container">
+    <div class="reg-form animate">
+      <h3>Complete Your Registration</h3>
+      <p>Fill in your details to create your GlobalPath profile and connect with a migration consultant.</p>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="reg-name" placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="reg-email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="reg-phone" placeholder="+254 700 000 000">
+      </div>
+      <div class="form-group">
+        <label>Target Country</label>
+        <select id="reg-country">
+          <option>USA</option><option>UK</option><option>Australia</option><option>Philippines</option><option>Mexico</option><option>Qatar</option><option>Dubai / UAE</option><option>Italy</option><option>Germany</option><option>France</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Migration Purpose</label>
+        <select>
+          <option>Work / Employment</option><option>Higher Education</option><option>Family Reunion</option><option>Business / Investment</option><option>Retirement</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Current Country of Residence</label>
+        <input type="text" placeholder="e.g. Kenya">
+      </div>
+      <button class="btn-primary" style="width:100%;margin-top:.5rem;padding:1rem;" onclick="submitRegistration()">Submit Registration</button>
+    </div>
+  </div>
+  <div id="reg-success" style="display:none;max-width:540px;margin:2rem auto;">
+    <div class="success-screen">
+      <div class="success-icon">✅</div>
+      <h3>Registration Successful!</h3>
+      <p>Welcome to GlobalPath! Your profile has been created. A consultant will contact you within 24–48 hours.</p>
+      <div class="reg-id" id="reg-id-display"></div>
+      <p style="color:var(--muted);font-size:.82rem">Save your registration ID for future reference.</p>
+      <button class="btn-primary" style="margin-top:1.5rem;" onclick="showPage('home')">Return to Home</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ABOUT PAGE -->
+<div id="about" class="page">
+<section>
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+  <div class="section-title">About GlobalPath</div>
+  <p class="section-sub">Your trusted partner for international migration</p>
+  <div style="max-width:700px;color:var(--muted);line-height:1.9;font-size:.95rem;">
+    <p style="margin-bottom:1.5rem">GlobalPath is a certified global migration consultancy dedicated to helping individuals and families relocate to their dream countries. We operate across 10 major destinations and have helped over 50,000 people successfully migrate.</p>
+    <p style="margin-bottom:1.5rem">Our online assessment platform allows applicants to evaluate their readiness before starting the formal migration process, saving time and money. Our tests are designed by immigration experts with decades of experience.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0;">
+      <div class="info-card"><h4>Our Mission</h4><ul><li>Simplify global migration</li><li>Provide affordable assessments</li><li>Connect talent with opportunities</li></ul></div>
+      <div class="info-card"><h4>Contact Us</h4><ul><li><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5c35323a331c3b30333e3d302c3d2834723f3331">[email&#160;protected]</a></li><li>+1 800 MIGRATE</li><li>Mon–Fri, 9am–6pm UTC</li></ul></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <span class="logo">Global<span>Path</span></span>
+    <p>Your trusted partner for international migration. We help you find your path to a better life abroad.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Destinations</h4>
+    <ul>
+      <li><a href="#" onclick="openCountry('usa')">USA</a></li>
+      <li><a href="#" onclick="openCountry('uk')">United Kingdom</a></li>
+      <li><a href="#" onclick="openCountry('australia')">Australia</a></li>
+      <li><a href="#" onclick="openCountry('germany')">Germany</a></li>
+      <li><a href="#" onclick="openCountry('dubai')">Dubai / UAE</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Services</h4>
+    <ul>
+      <li><a href="#" onclick="showPage('exam-selector')">Migration Assessment</a></li>
+      <li><a href="#" onclick="showPage('destinations')">Destination Guide</a></li>
+      <li><a href="#">Visa Consulting</a></li>
+      <li><a href="#">University Placement</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Company</h4>
+    <ul>
+      <li><a href="#" onclick="showPage('about')">About Us</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms of Service</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <p>© 2025 GlobalPath Migration. All rights reserved.</p>
+  <p style="color:var(--muted)">$20 exam fee is non-refundable after test commencement.</p>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ============ DATA ============
+const countries = {
+  usa: {
+    flag:'🇺🇸', name:'United States of America', tagline:'Land of Opportunity — Work, Study & Settle',
+    unis:['Harvard University','MIT','Stanford University','Yale University','Columbia University','UCLA','University of Chicago','Princeton University','Caltech','NYU'],
+    jobs:['Software Engineer ($110K–$180K)','Registered Nurse ($70K–$100K)','Civil Engineer ($75K–$110K)','Data Scientist ($100K–$160K)','Financial Analyst ($65K–$110K)','Physician ($200K+)','Teacher ($45K–$70K)','Truck Driver ($55K–$80K)'],
+    visa:['H-1B Work Visa','F-1 Student Visa','EB-5 Investor Visa','Green Card (Permanent Residence)','O-1 Extraordinary Ability','L-1 Intracompany Transfer','TN NAFTA Professionals'],
+    cost:['Rent (1BR): $1,200–$2,500/mo','Food: $300–$600/mo','Transport: $100–$200/mo','Healthcare: $300–$600/mo','Average Salary: $55,000/yr']
+  },
+  uk: {
+    flag:'🇬🇧', name:'United Kingdom', tagline:'World-class education and career opportunities',
+    unis:['University of Oxford','University of Cambridge','Imperial College London','UCL','University of Edinburgh','University of Manchester','King\'s College London','London School of Economics','University of Bristol','University of Warwick'],
+    jobs:['Software Developer (£45K–£80K)','NHS Nurse (£28K–£45K)','Accountant (£35K–£60K)','Data Analyst (£35K–£65K)','Civil Engineer (£35K–£60K)','Teacher (£28K–£45K)','Marketing Manager (£35K–£60K)','Chef (£22K–£35K)'],
+    visa:['Skilled Worker Visa','Student Visa','Global Talent Visa','Innovator Founder Visa','Health and Care Worker Visa','Graduate Visa (Post-Study Work)','Family Visa'],
+    cost:['Rent (1BR): £900–£1,800/mo','Food: £250–£450/mo','Transport: £100–£180/mo','NHS: Free for residents','Average Salary: £32,000/yr']
+  },
+  australia: {
+    flag:'🇦🇺', name:'Australia', tagline:'High quality of life and welcoming migration policy',
+    unis:['University of Melbourne','ANU','University of Sydney','University of Queensland','UNSW Sydney','Monash University','University of Adelaide','University of Western Australia','Queensland University of Technology','Macquarie University'],
+    jobs:['Software Engineer (A$90K–A$140K)','Nurse (A$70K–A$100K)','Mining Engineer (A$100K–A$160K)','Electrician (A$70K–A$100K)','Accountant (A$65K–A$100K)','Construction Manager (A$90K–A$130K)','Aged Care Worker (A$55K–A$70K)'],
+    visa:['Skilled Independent Visa (189)','Employer Sponsored (482)','Student Visa (500)','Partner Visa (820/801)','Business Innovation Visa','Working Holiday (417/462)','Parent Visa'],
+    cost:['Rent (1BR): A$1,500–A$2,800/mo','Food: A$400–A$700/mo','Transport: A$150–A$250/mo','Healthcare: Covered by Medicare','Average Salary: A$65,000/yr']
+  },
+  philippines: {
+    flag:'🇵🇭', name:'Philippines', tagline:'Tropical lifestyle with growing economy',
+    unis:['University of the Philippines','Ateneo de Manila University','De La Salle University','University of Santo Tomas','Far Eastern University','Adamson University','UP Diliman','Mapua University'],
+    jobs:['BPO Agent (₱25K–₱45K/mo)','IT Developer (₱40K–₱90K/mo)','Nurse (₱15K–₱30K/mo)','Teacher (₱18K–₱30K/mo)','Accountant (₱25K–₱50K/mo)','Engineer (₱30K–₱60K/mo)'],
+    visa:['Special Resident Retiree Visa (SRRV)','9(g) Pre-arranged Employment','Student Visa','Special Investor\'s Resident Visa','SIRV Visa','Tourist Visa (extendable)'],
+    cost:['Rent (1BR): ₱15K–₱35K/mo','Food: ₱8K–₱15K/mo','Transport: ₱2K–₱5K/mo','Healthcare: Affordable private','Average Salary: ₱350K/yr']
+  },
+  mexico: {
+    flag:'🇲🇽', name:'Mexico', tagline:'Vibrant culture, affordable living, growing opportunities',
+    unis:['UNAM','Tecnológico de Monterrey','UAM','Universidad Iberoamericana','IPN','University of Guadalajara','ITAM','Anahuac University'],
+    jobs:['Software Developer ($800–$2,000/mo)','Engineer ($700–$1,500/mo)','Teacher ($400–$800/mo)','Marketing Specialist ($600–$1,200/mo)','Healthcare Worker ($500–$1,000/mo)','Tourism Professional ($400–$900/mo)'],
+    visa:['Temporary Resident Visa','Permanent Resident Visa','Student Visa','Work Permit','Digital Nomad Visa','Investor Visa'],
+    cost:['Rent (1BR): $300–$700/mo','Food: $200–$400/mo','Transport: $30–$80/mo','Healthcare: Low cost private','Average Salary: $12,000/yr']
+  },
+  qatar: {
+    flag:'🇶🇦', name:'Qatar', tagline:'Tax-free income and world-class infrastructure',
+    unis:['Qatar University','Texas A&M Qatar','Carnegie Mellon Qatar','Georgetown Qatar','Northwestern Qatar','Weill Cornell Medicine Qatar','HEC Paris Qatar'],
+    jobs:['Engineer (QAR 8K–25K/mo)','Finance Professional (QAR 10K–30K/mo)','Healthcare Worker (QAR 7K–20K/mo)','IT Specialist (QAR 8K–20K/mo)','Construction Manager (QAR 10K–25K/mo)','Teacher (QAR 6K–15K/mo)','Hospitality (QAR 4K–10K/mo)'],
+    visa:['Work Permit/Residence Permit','Student Visa','Investor Visa','Family Sponsorship Visa','Short-term Business Visa'],
+    cost:['Rent (1BR): QAR 3K–8K/mo','Food: QAR 800–1,500/mo','Transport: QAR 300–600/mo','Healthcare: Employer covered','0% Income Tax']
+  },
+  dubai: {
+    flag:'🇦🇪', name:'Dubai, UAE', tagline:'Global hub for business, lifestyle and innovation',
+    unis:['American University of Dubai','University of Dubai','Heriot-Watt Dubai','Middlesex University Dubai','Murdoch University Dubai','SP Jain School of Global Management','Manipal University Dubai'],
+    jobs:['Finance Manager (AED 15K–40K/mo)','Software Engineer (AED 12K–30K/mo)','Marketing Director (AED 15K–40K/mo)','Real Estate Agent (AED 8K–25K+/mo)','Doctor (AED 20K–60K/mo)','Hospitality Manager (AED 8K–18K/mo)','Logistics Manager (AED 10K–25K/mo)'],
+    visa:['Employment Visa','Investor/Partner Visa','Golden Visa (5/10 yrs)','Student Visa','Freelance Permit','Retirement Visa (55+)','Digital Nomad Visa'],
+    cost:['Rent (1BR): AED 4K–10K/mo','Food: AED 800–1,500/mo','Transport: AED 400–1,000/mo','Healthcare: Employer covered','0% Personal Income Tax']
+  },
+  italy: {
+    flag:'🇮🇹', name:'Italy', tagline:'La dolce vita — culture, cuisine and opportunity',
+    unis:['Università di Bologna','Sapienza Rome','Politecnico di Milano','University of Padua','University of Florence','Bocconi University','University of Turin','University of Pisa'],
+    jobs:['IT Developer (€35K–€65K)','Tourism Manager (€25K–€45K)','Fashion Designer (€30K–€55K)','Chef (€20K–€40K)','Engineer (€30K–€55K)','Teacher (€22K–€38K)','Healthcare Worker (€28K–€50K)'],
+    visa:['National Work Visa','Elective Residency Visa','Student Visa','Startup Visa','Self-Employment Visa','EU Blue Card','Family Reunification'],
+    cost:['Rent (1BR): €700–€1,500/mo','Food: €300–€500/mo','Transport: €50–€120/mo','Healthcare: Public healthcare available','Average Salary: €29,000/yr']
+  },
+  germany: {
+    flag:'🇩🇪', name:'Germany', tagline:'Europe\'s powerhouse — engineering, technology and stability',
+    unis:['TU Munich','LMU Munich','Heidelberg University','Humboldt University Berlin','RWTH Aachen','FU Berlin','University of Hamburg','University of Stuttgart','Göttingen University','TU Berlin'],
+    jobs:['Software Engineer (€55K–€90K)','Mechanical Engineer (€50K–€80K)','Nurse (€35K–€55K)','Data Scientist (€55K–€85K)','Financial Analyst (€45K–€75K)','Research Scientist (€45K–€75K)','Skilled Tradesperson (€35K–€55K)'],
+    visa:['EU Blue Card','Skilled Immigration Visa','Student Visa','Job Seeker Visa','Freelance Visa','Family Reunification','Permanent Residence'],
+    cost:['Rent (1BR): €800–€1,600/mo','Food: €250–€450/mo','Transport: €80–€150/mo','Healthcare: Public health insurance','Average Salary: €45,000/yr']
+  },
+  france: {
+    flag:'🇫🇷', name:'France', tagline:'Culture, fashion, tech — a world destination',
+    unis:['École Normale Supérieure','École Polytechnique','Paris-Saclay','Sorbonne University','Sciences Po','HEC Paris','INSEAD','University of Paris','Grenoble INP','ESSEC Business School'],
+    jobs:['Software Engineer (€45K–€75K)','Marketing Manager (€40K–€65K)','Finance Analyst (€42K–€70K)','Nurse (€28K–€42K)','Chef (€25K–€45K)','Fashion Designer (€30K–€55K)','Engineer (€40K–€70K)'],
+    visa:['Talent Passport Visa','Student Visa','Work Permit','EU Blue Card','Entrepreneur Visa','Working Holiday','Family Visa'],
+    cost:['Rent (1BR): €800–€1,600/mo','Food: €300–€500/mo','Transport: €75–€130/mo','Healthcare: French Sécurité Sociale','Average Salary: €39,000/yr']
+  }
+};
+
+// ============ QUESTION BANKS ============
+const questionBanks = {
+  general: [
+    { q:'What document is commonly required for international travel?', opts:['Passport','National ID Card','Driver\'s License','Birth Certificate'], correct:0, explanation:'A valid passport is the primary document required for international travel.' },
+    { q:'What does "visa" refer to in the context of migration?', opts:['A credit card brand','Official permission to enter a country','Travel insurance','Flight ticket'], correct:1, explanation:'A visa is official authorization granted by a country allowing a foreign national to enter, stay, or leave.' },
+    { q:'What is "permanent residence" status?', opts:['Citizenship','Right to live and work indefinitely without being a citizen','A tourist visa','Temporary work permit'], correct:1, explanation:'Permanent residence (PR) grants the right to live and work in a country without citizenship.' },
+    { q:'Which organization sets international migration standards?', opts:['WHO','IOM (International Organization for Migration)','UNESCO','IMF'], correct:1, explanation:'The IOM is the leading inter-governmental organization in the field of migration.' },
+    { q:'What is "dual citizenship"?', opts:['Having two passports from the same country','Holding citizenship in two countries simultaneously','A type of work visa','A temporary residence permit'], correct:1, explanation:'Dual citizenship means being a legal citizen of two different countries at the same time.' },
+    { q:'What does "IELTS" stand for?', opts:['International English Language Testing System','International Educational Language Test Standard','Internet English Learning Test Suite','International Examination Language Test Score'], correct:0, explanation:'IELTS stands for International English Language Testing System, widely required for migration.' },
+    { q:'What is a "work permit"?', opts:['Permission to start a business','Official authorization to be employed in a foreign country','A type of student visa','A residence card'], correct:1, explanation:'A work permit is official authorization from a government allowing a foreign national to work in that country.' },
+    { q:'Which English proficiency test is widely accepted for UK migration?', opts:['TOEFL','IELTS','GRE','GMAT'], correct:1, explanation:'IELTS is the most widely accepted English proficiency test for UK migration.' },
+    { q:'What does "NOC" stand for in skilled worker migration?', opts:['National Occupation Classification','Non-Official Certificate','Notice of Completion','New Opportunities Code'], correct:0, explanation:'NOC (National Occupation Classification) is used to classify occupations in the context of skilled migration.' },
+    { q:'What is the "points-based immigration system"?', opts:['A fee-based immigration system','System awarding points for factors like skills, education and age','A lottery-based visa system','A system based on family connections'], correct:1, explanation:'A points-based system scores applicants on factors like education, work experience, language skills and age.' },
+    { q:'What is "biometric data" in immigration?', opts:['Medical records','Fingerprints and facial recognition data','Financial statements','Educational certificates'], correct:1, explanation:'Biometric data includes fingerprints and facial scans collected to verify identity in immigration processes.' },
+    { q:'What is an "apostille"?', opts:['A visa stamp','Authentication of documents for international use','A type of work visa','A travel insurance document'], correct:1, explanation:'An apostille is a form of authentication that validates a document for use in another country.' },
+    { q:'What does "settlement" mean in migration terms?', opts:['Temporary stay in a country','Permanent right to live in a country','Working holiday visa','Tourist visa extension'], correct:1, explanation:'Settlement refers to gaining the permanent right to reside in a country.' },
+    { q:'Which international agreement governs refugee protection?', opts:['Paris Agreement','Geneva Conventions','1951 Refugee Convention','UN Charter'], correct:2, explanation:'The 1951 Refugee Convention is the key legal document governing refugee protection internationally.' },
+    { q:'What is "consular processing" in immigration?', opts:['Processing visa applications at an embassy/consulate abroad','Processing done only inside the destination country','Online visa application','Border processing'], correct:0, explanation:'Consular processing means applying for a visa or immigration status through an embassy or consulate in your home country.' }
+  ]
+};
+
+// ============ STATE ============
+let currentCountry = null;
+let selectedExamCountry = null;
+let questions = [];
+let currentQ = 0;
+let answers = [];
+let score = 0;
+let answered = false;
+
+// ============ NAV ============
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const pg = document.getElementById(id);
+  if(pg) { pg.classList.add('active'); window.scrollTo(0,0); }
+}
+
+function openCountry(code) {
+  currentCountry = code;
+  const d = countries[code];
+  if(!d) return;
+  document.getElementById('detail-flag').textContent = d.flag;
+  document.getElementById('detail-name').textContent = d.name;
+  document.getElementById('detail-tagline').textContent = d.tagline;
+  renderInfoCards('unis-list', d.unis, '🎓 Top Universities');
+  renderInfoCards('jobs-list', d.jobs, '💼 In-Demand Jobs');
+  renderInfoCards('visa-list', d.visa, '📋 Available Visa Types');
+  renderInfoCards('cost-list', d.cost, '💰 Cost of Living');
+  // reset tabs
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===0));
+  document.querySelectorAll('.tab-content').forEach((t,i)=>t.classList.toggle('active',i===0));
+  showPage('country-detail');
+}
+
+function renderInfoCards(containerId, items, title) {
+  const el = document.getElementById(containerId);
+  const half = Math.ceil(items.length/2);
+  el.innerHTML = `
+    <div class="info-card"><h4>${title} (1)</h4><ul>${items.slice(0,half).map(i=>`<li>${i}</li>`).join('')}</ul></div>
+    <div class="info-card"><h4>${title} (2)</h4><ul>${items.slice(half).map(i=>`<li>${i}</li>`).join('')}</ul></div>
+  `;
+}
+
+function switchTab(tab) {
+  const tabs = ['unis','jobs','visa','cost'];
+  tabs.forEach((t,i) => {
+    document.querySelectorAll('.tab')[i].classList.toggle('active', t===tab);
+    document.getElementById('tab-'+t).classList.toggle('active', t===tab);
+  });
+}
+
+// ============ EXAM SELECTOR ============
+function initExamSelector() {
+  const grid = document.getElementById('exam-country-grid');
+  const list = [
+    {code:'usa',flag:'🇺🇸',name:'USA'},{code:'uk',flag:'🇬🇧',name:'UK'},{code:'australia',flag:'🇦🇺',name:'Australia'},
+    {code:'philippines',flag:'🇵🇭',name:'Philippines'},{code:'mexico',flag:'🇲🇽',name:'Mexico'},{code:'qatar',flag:'🇶🇦',name:'Qatar'},
+    {code:'dubai',flag:'🇦🇪',name:'Dubai'},{code:'italy',flag:'🇮🇹',name:'Italy'},{code:'germany',flag:'🇩🇪',name:'Germany'},{code:'france',flag:'🇫🇷',name:'France'}
+  ];
+  grid.innerHTML = list.map(c=>`
+    <div class="exam-country-btn" id="ecb-${c.code}" onclick="selectExamCountry('${c.code}','${c.flag}','${c.name}')">
+      <div class="flag">${c.flag}</div><div class="name">${c.name}</div>
+    </div>`).join('');
+  selectedExamCountry = null;
+}
+
+function selectExamCountry(code, flag, name) {
+  document.querySelectorAll('.exam-country-btn').forEach(b=>b.classList.remove('selected'));
+  document.getElementById('ecb-'+code).classList.add('selected');
+  selectedExamCountry = {code,flag,name};
+}
+
+function showPayment() {
+  if(!selectedExamCountry) { alert('Please select a destination country first!'); return; }
+  showPage('payment-page');
+}
+
+let selectedPayMethod = 'mpesa';
+
+function selectMethod(method) {
+  selectedPayMethod = method;
+  document.querySelectorAll('.pay-method-card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById('pm-'+method).classList.add('selected');
+}
+
+function goToMchanga() {
+  const name = document.getElementById('pay-name').value.trim();
+  const email = document.getElementById('pay-email').value.trim();
+  if(!name) { alert('Please enter your full name before proceeding.'); return; }
+  if(!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+  if(!selectedExamCountry) { alert('Please go back and select a destination country.'); return; }
+  const methodNames = { mpesa:'M-Pesa', airtel:'Airtel Money', visa:'Visa/Mastercard', paypal:'PayPal' };
+  if(confirm('You will now be redirected to our secure M-Changa payment page.\n\nMethod: '+methodNames[selectedPayMethod]+'\nAmount: $20 USD\n\nAfter completing payment, return and click the confirm button to start your exam.\n\nClick OK to open payment page.')) {
+    window.open('https://www.mchanga.africa/fundraiser/132908', '_blank');
+    document.querySelector('#payment-page .payment-form').style.display = 'none';
+    document.getElementById('payment-confirm').style.display = 'block';
+  }
+}
+
+function formatCard(el) {
+  let v = el.value.replace(/\D/g,'').substring(0,16);
+  el.value = v.replace(/(.{4})/g,'$1 ').trim();
+}
+function formatExpiry(el) {
+  let v = el.value.replace(/\D/g,'').substring(0,4);
+  if(v.length>=2) v = v.substring(0,2)+' / '+v.substring(2);
+  el.value = v;
+}
+
+function processPayment() {
+  const name = document.getElementById('pay-name').value;
+  const email = document.getElementById('pay-email').value;
+  const card = document.getElementById('pay-card').value;
+  if(!name||!email||card.replace(/\s/g,'').length<16) { alert('Please fill all payment fields correctly.'); return; }
+  // Simulate payment processing
+  const btn = document.querySelector('#payment-page .btn-primary');
+  btn.textContent = 'Processing...';
+  btn.disabled = true;
+  setTimeout(()=>{ btn.textContent='Pay $20.00 USD — Secure Checkout'; btn.disabled=false; startQuiz(); },1800);
+}
+
+// ============ QUIZ ============
+function startQuiz() {
+  questions = shuffle([...questionBanks.general]).slice(0,15);
+  currentQ = 0; answers = []; score = 0; answered = false;
+  document.getElementById('quiz-country-label').textContent = selectedExamCountry.flag+' '+selectedExamCountry.name+' Migration Assessment';
+  showPage('quiz-page');
+  renderQuestion();
+}
+
+function shuffle(arr) { return arr.sort(()=>Math.random()-.5); }
+
+function renderQuestion() {
+  answered = false;
+  const q = questions[currentQ];
+  const pct = (currentQ/15)*100;
+  document.getElementById('progress-bar').style.width = pct+'%';
+  document.getElementById('q-num-label').textContent = (currentQ+1)+' / 15';
+  document.getElementById('next-btn').style.display = 'none';
+  const letters = ['A','B','C','D'];
+  document.getElementById('question-area').innerHTML = `
+    <div class="question-card animate">
+      <div style="font-size:.8rem;color:var(--muted);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.5px">Question ${currentQ+1} of 15</div>
+      <h3>${q.q}</h3>
+      <div class="options">
+        ${q.opts.map((o,i)=>`
+          <div class="option" id="opt-${i}" onclick="selectAnswer(${i})">
+            <span class="opt-letter">${letters[i]}</span>${o}
+          </div>`).join('')}
+      </div>
+      <div class="feedback" id="feedback"></div>
+    </div>`;
+}
+
+function selectAnswer(i) {
+  if(answered) return;
+  answered = true;
+  const q = questions[currentQ];
+  const isCorrect = i === q.correct;
+  if(isCorrect) score++;
+  answers.push({q:currentQ, selected:i, correct:q.correct, isCorrect});
+  document.querySelectorAll('.option').forEach((el,idx)=>{
+    el.style.pointerEvents='none';
+    if(idx===q.correct) el.classList.add('correct');
+    else if(idx===i) el.classList.add('wrong');
+  });
+  const fb = document.getElementById('feedback');
+  fb.className = 'feedback show '+(isCorrect?'correct':'wrong');
+  fb.textContent = (isCorrect?'✓ Correct! ':'✗ Incorrect. ')+q.explanation;
+  document.getElementById('next-btn').style.display = 'block';
+  document.getElementById('next-btn').textContent = currentQ===14 ? 'View Results →' : 'Next Question →';
+}
+
+function nextQuestion() {
+  currentQ++;
+  if(currentQ>=15) { showResults(); return; }
+  renderQuestion();
+}
+
+// ============ RESULTS ============
+function showResults() {
+  const pct = Math.round((score/15)*100);
+  const deg = Math.round(pct*3.6);
+  let label, feedback;
+  if(pct>=80){ label='Excellent — Highly Eligible'; feedback='Outstanding! You demonstrate excellent knowledge and strong migration eligibility. Our consultants will prioritize your application.'; }
+  else if(pct>=60){ label='Good — Eligible'; feedback='Good performance! You show solid knowledge. A consultant will guide you through the next steps.'; }
+  else if(pct>=40){ label='Fair — Potentially Eligible'; feedback='Fair performance. With some preparation and guidance, you can meet migration requirements. Our team can help.'; }
+  else{ label='Needs Improvement'; feedback='There\'s room for improvement. We recommend our preparation resources before reapplying. Our consultants can assist.'; }
+  
+  const ring = document.getElementById('score-ring');
+  ring.style.setProperty('--score-deg', deg+'deg');
+  ring.style.background = `conic-gradient(var(--gold) ${deg}deg, var(--mid) 0)`;
+  document.getElementById('score-num').textContent = score;
+  document.getElementById('score-total').textContent = '/ 15';
+  document.getElementById('score-label').textContent = label;
+  document.getElementById('score-feedback').textContent = feedback;
+  document.getElementById('results-country-label').textContent = selectedExamCountry.flag+' '+selectedExamCountry.name+' Migration Assessment';
+  
+  const correct = answers.filter(a=>a.isCorrect).length;
+  const wrong = answers.filter(a=>!a.isCorrect).length;
+  document.getElementById('breakdown-grid').innerHTML = `
+    <div class="b-item"><div class="b-label">Score</div><div class="b-val" style="color:var(--gold)">${score}/15 (${pct}%)</div></div>
+    <div class="b-item"><div class="b-label">Correct Answers</div><div class="b-val" style="color:var(--green)">${correct}</div></div>
+    <div class="b-item"><div class="b-label">Wrong Answers</div><div class="b-val" style="color:var(--red)">${wrong}</div></div>
+    <div class="b-item"><div class="b-label">Target Country</div><div class="b-val">${selectedExamCountry.flag} ${selectedExamCountry.name}</div></div>
+  `;
+  showPage('results-page');
+}
+
+// ============ REGISTRATION ============
+function submitRegistration() {
+  const name = document.getElementById('reg-name').value;
+  const email = document.getElementById('reg-email').value;
+  const phone = document.getElementById('reg-phone').value;
+  if(!name||!email||!phone) { alert('Please fill all required fields.'); return; }
+  const id = 'GP-'+Date.now().toString(36).toUpperCase()+'-'+Math.random().toString(36).substring(2,6).toUpperCase();
+  document.getElementById('reg-id-display').textContent = id;
+  document.getElementById('reg-form-container').style.display='none';
+  document.getElementById('reg-success').style.display='block';
+  window.scrollTo(0,0);
+}
+
+// ============ INIT ============
+document.addEventListener('DOMContentLoaded', ()=>{ initExamSelector(); }
