@@ -288,14 +288,12 @@ h1 em{color:var(--gold);font-style:normal;}
 <!-- PAYMENT -->
 <div id="page-payment" class="page">
   <button class="back" onclick="showPage('exam')">&#8592; Back</button>
-  <div class="alertbox">Secure payment via M-Changa. M-Pesa, Airtel Money, Visa and PayPal accepted.</div>
+  <div class="alertbox">&#128274; Secure payment via Stripe. Visa, Mastercard and PayPal accepted.</div>
   <div class="pbox" id="payformbox">
     <h3>Complete Payment</h3>
     <p style="color:var(--muted);font-size:.85rem;margin-bottom:1.5rem;">Choose your payment method and proceed to secure checkout.</p>
     <div class="pmethods">
-      <div class="pmc on" id="pm-mpesa" onclick="selPay('mpesa')"><div class="pi">&#128241;</div><div class="pn">M-Pesa</div><div class="ps">Safaricom</div></div>
-      <div class="pmc" id="pm-airtel" onclick="selPay('airtel')"><div class="pi">&#128242;</div><div class="pn">Airtel Money</div><div class="ps">Airtel</div></div>
-      <div class="pmc" id="pm-visa" onclick="selPay('visa')"><div class="pi">&#128179;</div><div class="pn">Visa / Mastercard</div><div class="ps">Debit or Credit</div></div>
+      <div class="pmc on" id="pm-visa" onclick="selPay('visa')"><div class="pi">&#128179;</div><div class="pn">Visa / Mastercard</div><div class="ps">Debit or Credit Card</div></div>
       <div class="pmc" id="pm-paypal" onclick="selPay('paypal')"><div class="pi">&#127837;</div><div class="pn">PayPal</div><div class="ps">International</div></div>
     </div>
     <div class="fg"><label>Full Name</label><input type="text" id="payname" placeholder="Your full name"></div>
@@ -303,7 +301,7 @@ h1 em{color:var(--gold);font-style:normal;}
     <div class="amtrow"><span style="color:var(--muted);font-size:.88rem;">Migration Assessment Fee</span><span style="font-family:'Playfair Display',serif;color:var(--gold);font-size:1.3rem;font-weight:700;">$20 USD</span></div>
     <button class="btn-gold" style="width:100%;padding:1rem;" onclick="doPay()">Pay Now - Secure Checkout</button>
     <div class="sbadges">
-      <span class="sbadge">M-Pesa</span><span class="sbadge">Airtel Money</span><span class="sbadge">Visa/MC</span><span class="sbadge">PayPal</span><span class="sbadge">SSL Secure</span>
+      <span class="sbadge">&#128179; Visa/Mastercard</span><span class="sbadge">&#127837; PayPal</span><span class="sbadge">&#128274; SSL Secure</span><span class="sbadge">&#9989; Stripe Protected</span>
     </div>
     <p style="text-align:center;color:var(--muted);font-size:.73rem;margin-top:1rem;">Powered by M-Changa Africa. You will be redirected to complete payment.</p>
   </div>
@@ -505,7 +503,7 @@ var QS = [
 ];
 
 var selCountry = null;
-var selPayMethod = "mpesa";
+var selPayMethod = "visa";
 var qs = [], curQ = 0, answers = [], score = 0, answered = false;
 
 function showPage(id) {
