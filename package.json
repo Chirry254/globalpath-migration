@@ -1,0 +1,8 @@
+{
+  "name": "globalpath-migration",
+  "version": "1.0.0",
+  "description": "GlobalPath Migration Platform",
+  "dependencies": {
+    "stripe": "^14.0.0"
+  }
+}

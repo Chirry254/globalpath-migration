@@ -307,6 +307,28 @@ h1 em{color:var(--gold);font-style:normal;}
     </div>
     <p style="text-align:center;color:var(--muted);font-size:.73rem;margin-top:1rem;">Powered by M-Changa Africa. You will be redirected to complete payment.</p>
   </div>
+  <div id="payinstructbox" style="display:none;max-width:500px;margin:0 auto;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2.5rem;text-align:center;">
+      <div style="font-size:3rem;margin-bottom:1rem;">&#128179;</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:1rem;">Complete Your Payment</h3>
+      <p style="color:var(--muted);font-size:.88rem;line-height:1.8;margin-bottom:1.5rem;">Pay <strong style="color:var(--gold);">$20 USD</strong> on M-Changa. After payment you will receive an <strong style="color:var(--gold);">access code</strong> via email or WhatsApp. Enter it below to start your exam.</p>
+      <div style="background:var(--darker);border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:1.5rem;font-size:.83rem;color:var(--muted);line-height:1.8;">
+        <strong style="color:var(--text);">Payment methods:</strong><br>
+        M-Pesa &nbsp;|&nbsp; Airtel Money &nbsp;|&nbsp; Visa/Mastercard &nbsp;|&nbsp; PayPal
+      </div>
+      <a href="https://www.mchanga.africa/fundraiser/132908" target="_blank">
+        <button class="btn-gold" style="width:100%;padding:1rem;font-size:1rem;margin-bottom:1.5rem;">Step 1 - Pay on M-Changa &#8594;</button>
+      </a>
+      <div style="border-top:1px solid var(--border);padding-top:1.5rem;">
+        <p style="color:var(--muted);font-size:.85rem;margin-bottom:1rem;">Step 2 - Enter your access code:</p>
+        <input type="text" id="accesscode" placeholder="e.g. GP-XXXX-XXXX" style="width:100%;background:var(--darker);border:1px solid var(--border);border-radius:6px;padding:.9rem 1rem;color:var(--text);font-family:monospace;font-size:1.1rem;text-align:center;letter-spacing:3px;outline:none;margin-bottom:1rem;text-transform:uppercase;">
+        <div id="codeerror" style="color:#E05C5C;font-size:.82rem;margin-bottom:.8rem;display:none;">Invalid or already used code. Please check and try again.</div>
+        <button class="btn-out" style="width:100%;padding:1rem;" onclick="verifyCode()">Verify Code and Start Exam &#8594;</button>
+      </div>
+      <p style="color:var(--muted);font-size:.72rem;margin-top:1rem;">No code yet? Contact us on WhatsApp after paying and we will send it instantly.</p>
+    </div>
+  </div>
+
   <div class="pconfirm" id="payconfirmbox">
     <div class="pci">&#9989;</div>
     <h3>Payment Confirmed!</h3>
@@ -562,13 +584,56 @@ function doPay() {
   var email = document.getElementById("payemail").value.trim();
   if (!name) { alert("Please enter your full name."); return; }
   if (!email || email.indexOf("@") < 0) { alert("Please enter a valid email."); return; }
-  var methods = {mpesa: "M-Pesa", airtel: "Airtel Money", visa: "Visa/Mastercard", paypal: "PayPal"};
-  var ok = confirm("You will be redirected to M-Changa secure payment.\n\nMethod: " + methods[selPayMethod] + "\nAmount: $20 USD\n\nAfter paying, return here and click confirm to start your exam.\n\nClick OK to open payment page.");
-  if (ok) {
-    window.open("https://www.mchanga.africa/fundraiser/132908", "_blank");
-    document.getElementById("payformbox").style.display = "none";
-    document.getElementById("payconfirmbox").style.display = "block";
+  if (!selCountry) { alert("Please go back and select a destination country."); return; }
+
+  var btn = document.querySelector("#payformbox .btn-gold");
+  btn.textContent = "Processing...";
+  btn.disabled = true;
+
+  fetch("/api/create-checkout", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name: name, email: email, country: selCountry.name })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert("Payment error: " + (data.error || "Unknown error"));
+      btn.textContent = "Pay Now - Secure Checkout";
+      btn.disabled = false;
+    }
+  })
+  .catch(function(err) {
+    alert("Connection error. Please try again.");
+    btn.textContent = "Pay Now - Secure Checkout";
+    btn.disabled = false;
+  });
+}
+
+function verifyCode() {
+  var input = document.getElementById("accesscode").value.trim().toUpperCase();
+  var errEl = document.getElementById("codeerror");
+  errEl.style.display = "none";
+  if (!input) { errEl.textContent = "Please enter your access code."; errEl.style.display = "block"; return; }
+  // Load codes from storage
+  var codes = JSON.parse(localStorage.getItem("gp_codes") || "[]");
+  var found = -1;
+  for (var i = 0; i < codes.length; i++) {
+    if (codes[i].code === input && !codes[i].used) { found = i; break; }
   }
+  if (found === -1) {
+    errEl.textContent = "Invalid or already used code. Please check and try again.";
+    errEl.style.display = "block";
+    return;
+  }
+  // Mark code as used
+  codes[found].used = true;
+  localStorage.setItem("gp_codes", JSON.stringify(codes));
+  // Unlock exam
+  document.getElementById("payinstructbox").style.display = "none";
+  document.getElementById("payconfirmbox").style.display = "block";
 }
 
 function shuffle(arr) {
@@ -666,7 +731,28 @@ function submitReg() {
   window.scrollTo(0, 0);
 }
 
-window.onload = function() { showPage("home"); };
+window.onload = function() {
+  var params = new URLSearchParams(window.location.search);
+  // Auto-start exam after successful Stripe payment
+  if (params.get("startexam") === "true" && sessionStorage.getItem("gp_paid") === "true") {
+    var savedCountry = sessionStorage.getItem("gp_country") || "USA";
+    // find country code
+    for (var code in DATA) {
+      if (DATA[code].name === savedCountry) {
+        selCountry = { code: code, name: savedCountry };
+        break;
+      }
+    }
+    if (!selCountry) selCountry = { code: "usa", name: "USA" };
+    sessionStorage.removeItem("gp_paid");
+    startQuiz();
+  } else if (params.get("cancelled") === "true") {
+    showPage("payment");
+    alert("Payment was cancelled. Please try again.");
+  } else {
+    showPage("home");
+  }
+};
 </script>
 </body>
 </html>
