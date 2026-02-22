@@ -82,144 +82,7 @@ h1 em{color:var(--gold);font-style:normal;}
 .ebox p{color:var(--muted);font-size:.9rem;line-height:1.8;margin-bottom:1.5rem;}
 .price{font-family:'Playfair Display',serif;font-size:3rem;color:var(--gold);margin:1rem 0;}
 .price span{font-size:1rem;color:var(--muted);font-family:'DM Sans',sans-serif;}
-.feats{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin:1rem 0 1.5rem;}
-.feat{background:rgba(201,168,76,0.08);border:1px solid var(--border);padding:.4rem .9rem;border-radius:4px;font-size:.78rem;color:var(--muted);}
-.ecgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:.7rem;margin:1.5rem 0;}
-.ecb{background:var(--darker);border:2px solid var(--border);border-radius:8px;padding:.8rem .5rem;text-align:center;cursor:pointer;transition:.25s;}
-.ecb:hover,.ecb.on{border-color:var(--gold);background:rgba(201,168,76,0.08);}
-.ecb .ef{font-size:1.8rem;}
-.ecb .en{font-size:.62rem;color:var(--muted);margin-top:.3rem;}
-
-/* PAYMENT */
-.pbox{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2.5rem;max-width:500px;margin:0 auto;}
-.pbox h3{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:.5rem;}
-.pmethods{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1.5rem 0;}
-.pmc{background:var(--darker);border:2px solid var(--border);border-radius:10px;padding:1rem;text-align:center;cursor:pointer;transition:.25s;}
-.pmc:hover,.pmc.on{border-color:var(--gold);background:rgba(201,168,76,0.08);}
-.pmc .pi{font-size:1.8rem;margin-bottom:.3rem;}
-.pmc .pn{font-size:.82rem;font-weight:600;}
-.pmc .ps{font-size:.7rem;color:var(--muted);margin-top:.2rem;}
-.fg{margin-bottom:1.1rem;}
-.fg label{display:block;font-size:.75rem;color:var(--muted);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.5px;}
-.fg input,.fg select{width:100%;background:var(--darker);border:1px solid var(--border);border-radius:6px;padding:.72rem 1rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.88rem;outline:none;transition:.2s;}
-.fg input:focus,.fg select:focus{border-color:var(--gold);}
-.amtrow{background:var(--darker);border:1px solid var(--border);border-radius:8px;padding:.9rem 1.2rem;display:flex;justify-content:space-between;align-items:center;margin:1rem 0;}
-.sbadges{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;}
-.sbadge{font-size:.7rem;color:var(--muted);background:rgba(255,255,255,0.04);padding:.3rem .6rem;border-radius:3px;}
-.alertbox{background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);border-radius:6px;padding:.9rem 1.1rem;font-size:.83rem;color:var(--gold);margin-bottom:1.5rem;}
-.pconfirm{display:none;text-align:center;padding:2rem;}
-.pconfirm .pci{font-size:3.5rem;margin-bottom:1rem;}
-.pconfirm h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--green);margin-bottom:.8rem;}
-.pconfirm p{color:var(--muted);margin-bottom:1.5rem;font-size:.9rem;}
-
-/* QUIZ */
-.qwrap{max-width:680px;margin:0 auto;}
-.qhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;}
-.qbar{flex:1;height:6px;background:var(--mid);border-radius:3px;margin:0 1rem;overflow:hidden;}
-.qfill{height:100%;background:linear-gradient(90deg,var(--gold),#E8C97A);border-radius:3px;transition:.5s;}
-.qcard{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2.5rem;}
-.qlbl{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.8rem;}
-.qtext{font-family:'Playfair Display',serif;font-size:1.2rem;line-height:1.5;margin-bottom:1.8rem;}
-.opts{display:flex;flex-direction:column;gap:.75rem;}
-.opt{background:var(--darker);border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:.9rem;font-size:.88rem;}
-.opt:hover{border-color:rgba(201,168,76,0.4);}
-.opt.ok{border-color:var(--green) !important;background:rgba(46,204,143,0.09) !important;}
-.opt.bad{border-color:var(--red) !important;background:rgba(224,92,92,0.09) !important;}
-.oltr{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;font-size:.73rem;font-weight:700;flex-shrink:0;}
-.fb{margin-top:1rem;padding:.9rem 1rem;border-radius:6px;font-size:.83rem;display:none;}
-.fb.show{display:block;}
-.fb.fok{background:rgba(46,204,143,0.1);border:1px solid rgba(46,204,143,0.3);color:#2ECC8F;}
-.fb.fbad{background:rgba(224,92,92,0.1);border:1px solid rgba(224,92,92,0.3);color:#E05C5C;}
-.qnav{display:flex;justify-content:flex-end;margin-top:1.5rem;}
-
-/* RESULTS */
-.rbox{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:3rem;max-width:580px;margin:0 auto;text-align:center;}
-.sring{width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:1.5rem auto;}
-.sinr{width:110px;height:110px;border-radius:50%;background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.snum{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gold);}
-.stot{font-size:.75rem;color:var(--muted);}
-.slabel{font-size:1.05rem;font-weight:600;margin:1rem 0 .4rem;}
-.sfb{color:var(--muted);font-size:.88rem;margin-bottom:1.5rem;line-height:1.7;}
-.bdown{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;text-align:left;margin:1.2rem 0 1.8rem;}
-.bi{background:var(--darker);border-radius:6px;padding:.75rem;}
-.bil{font-size:.72rem;color:var(--muted);margin-bottom:.2rem;}
-.biv{font-weight:600;font-size:.92rem;}
-
-/* REG */
-.regbox{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2.5rem;max-width:520px;margin:0 auto;}
-.regbox h3{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:.4rem;}
-.regsub{color:var(--muted);font-size:.83rem;margin-bottom:1.8rem;}
-.sucbox{text-align:center;padding:3rem 2rem;max-width:520px;margin:0 auto;}
-.sucbox .suci{font-size:4rem;margin-bottom:1rem;}
-.sucbox h3{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--green);margin-bottom:.8rem;}
-.sucbox p{color:var(--muted);margin-bottom:1.5rem;}
-.regid{font-family:monospace;background:var(--darker);border:1px solid var(--border);padding:.5rem 1rem;border-radius:4px;font-size:.85rem;color:var(--gold);display:inline-block;margin:.8rem 0;}
-
-@media(max-width:600px){.nav-links{display:none;}}
-</style>
-</head>
-<body>
-
-<nav>
-  <div class="logo">Global<span>Path</span></div>
-  <ul class="nav-links">
-    <li><a onclick="showPage('home')">Home</a></li>
-    <li><a onclick="showPage('destinations')">Destinations</a></li>
-    <li><a onclick="showPage('exam')">Take Exam</a></li>
-    <li><a onclick="showPage('about')">About</a></li>
-  </ul>
-  <button class="nav-cta" onclick="showPage('exam')">Start Assessment $20</button>
-</nav>
-
-<!-- HOME -->
-<div id="page-home" class="page active">
-<div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-content">
-    <div class="badge">Trusted Global Migration Platform</div>
-    <h1>Your Path to <em>Global Opportunities</em> Starts Here</h1>
-    <p class="hero-sub">We help you migrate to 10 countries worldwide. Take our certified assessment, explore top universities and jobs, and begin your journey today.</p>
-    <div class="hero-btns">
-      <button class="btn-gold" onclick="showPage('exam')">Take Assessment $20</button>
-      <button class="btn-out" onclick="showPage('destinations')">Explore Destinations</button>
-    </div>
-    <div class="stats">
-      <div><div class="snum">50K+</div><div class="slbl">Successful Migrants</div></div>
-      <div><div class="snum">10</div><div class="slbl">Countries Covered</div></div>
-      <div><div class="snum">500+</div><div class="slbl">Partner Universities</div></div>
-      <div><div class="snum">98%</div><div class="slbl">Satisfaction Rate</div></div>
-    </div>
-    <p style="color:var(--muted);font-size:.8rem;margin-top:2.5rem;margin-bottom:.8rem;">Click a flag to explore:</p>
-    <div class="flag-row">
-      <div class="flag-btn" onclick="openCountry('usa')">&#127482;&#127480;<span>USA</span></div>
-      <div class="flag-btn" onclick="openCountry('uk')">&#127468;&#127463;<span>UK</span></div>
-      <div class="flag-btn" onclick="openCountry('australia')">&#127462;&#127482;<span>Australia</span></div>
-      <div class="flag-btn" onclick="openCountry('philippines')">&#127477;&#127469;<span>Philippines</span></div>
-      <div class="flag-btn" onclick="openCountry('mexico')">&#127474;&#127485;<span>Mexico</span></div>
-      <div class="flag-btn" onclick="openCountry('qatar')">&#127478;&#127462;<span>Qatar</span></div>
-      <div class="flag-btn" onclick="openCountry('dubai')">&#127462;&#127466;<span>Dubai</span></div>
-      <div class="flag-btn" onclick="openCountry('italy')">&#127470;&#127481;<span>Italy</span></div>
-      <div class="flag-btn" onclick="openCountry('germany')">&#127465;&#127466;<span>Germany</span></div>
-      <div class="flag-btn" onclick="openCountry('france')">&#127467;&#127479;<span>France</span></div>
-    </div>
-  </div>
-</div>
-<div class="how">
-  <div class="sec-title">How It Works</div>
-  <p class="sec-sub">Four simple steps to your new life abroad</p>
-  <div class="steps">
-    <div class="step"><div class="step-icon">&#127758;</div><div class="step-title">1. Choose Destination</div><p class="step-desc">Browse 10 countries and explore universities, jobs and visa types.</p></div>
-    <div class="step"><div class="step-icon">&#128221;</div><div class="step-title">2. Take Assessment</div><p class="step-desc">Pay $20 and take our certified migration test. Get instant scores.</p></div>
-    <div class="step"><div class="step-icon">&#128202;</div><div class="step-title">3. Get Results</div><p class="step-desc">Receive your eligibility report with score and recommended pathways.</p></div>
-    <div class="step"><div class="step-icon">&#9992;</div><div class="step-title">4. Register and Migrate</div><p class="step-desc">Complete registration and connect with our migration consultants.</p></div>
-  </div>
-</div>
-</div>
-
-
-
-
+.feats{display:flex;gap:.7rem;justif
 <!-- TESTIMONIALS SECTION -->
 <div style="padding:4rem 1rem;background:linear-gradient(180deg,var(--dark) 0%,#0D1220 100%);">
   <div style="max-width:1100px;margin:0 auto;">
@@ -377,6 +240,144 @@ h1 em{color:var(--gold);font-style:normal;}
 .tquote::before{content:'C';font-size:2rem;color:var(--gold);line-height:0;vertical-align:-0.5rem;margin-right:.2rem;}
 .tbadge{display:inline-block;background:rgba(46,204,143,0.1);border:1px solid rgba(46,204,143,0.3);color:#2ECC8F;border-radius:20px;padding:.25rem .8rem;font-size:.72rem;font-weight:600;}
 </style>
+y-content:center;flex-wrap:wrap;margin:1rem 0 1.5rem;}
+.feat{background:rgba(201,168,76,0.08);border:1px solid var(--border);padding:.4rem .9rem;border-radius:4px;font-size:.78rem;color:var(--muted);}
+.ecgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:.7rem;margin:1.5rem 0;}
+.ecb{background:var(--darker);border:2px solid var(--border);border-radius:8px;padding:.8rem .5rem;text-align:center;cursor:pointer;transition:.25s;}
+.ecb:hover,.ecb.on{border-color:var(--gold);background:rgba(201,168,76,0.08);}
+.ecb .ef{font-size:1.8rem;}
+.ecb .en{font-size:.62rem;color:var(--muted);margin-top:.3rem;}
+
+/* PAYMENT */
+.pbox{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2.5rem;max-width:500px;margin:0 auto;}
+.pbox h3{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:.5rem;}
+.pmethods{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1.5rem 0;}
+.pmc{background:var(--darker);border:2px solid var(--border);border-radius:10px;padding:1rem;text-align:center;cursor:pointer;transition:.25s;}
+.pmc:hover,.pmc.on{border-color:var(--gold);background:rgba(201,168,76,0.08);}
+.pmc .pi{font-size:1.8rem;margin-bottom:.3rem;}
+.pmc .pn{font-size:.82rem;font-weight:600;}
+.pmc .ps{font-size:.7rem;color:var(--muted);margin-top:.2rem;}
+.fg{margin-bottom:1.1rem;}
+.fg label{display:block;font-size:.75rem;color:var(--muted);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.5px;}
+.fg input,.fg select{width:100%;background:var(--darker);border:1px solid var(--border);border-radius:6px;padding:.72rem 1rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.88rem;outline:none;transition:.2s;}
+.fg input:focus,.fg select:focus{border-color:var(--gold);}
+.amtrow{background:var(--darker);border:1px solid var(--border);border-radius:8px;padding:.9rem 1.2rem;display:flex;justify-content:space-between;align-items:center;margin:1rem 0;}
+.sbadges{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;}
+.sbadge{font-size:.7rem;color:var(--muted);background:rgba(255,255,255,0.04);padding:.3rem .6rem;border-radius:3px;}
+.alertbox{background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);border-radius:6px;padding:.9rem 1.1rem;font-size:.83rem;color:var(--gold);margin-bottom:1.5rem;}
+.pconfirm{display:none;text-align:center;padding:2rem;}
+.pconfirm .pci{font-size:3.5rem;margin-bottom:1rem;}
+.pconfirm h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--green);margin-bottom:.8rem;}
+.pconfirm p{color:var(--muted);margin-bottom:1.5rem;font-size:.9rem;}
+
+/* QUIZ */
+.qwrap{max-width:680px;margin:0 auto;}
+.qhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;}
+.qbar{flex:1;height:6px;background:var(--mid);border-radius:3px;margin:0 1rem;overflow:hidden;}
+.qfill{height:100%;background:linear-gradient(90deg,var(--gold),#E8C97A);border-radius:3px;transition:.5s;}
+.qcard{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2.5rem;}
+.qlbl{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.8rem;}
+.qtext{font-family:'Playfair Display',serif;font-size:1.2rem;line-height:1.5;margin-bottom:1.8rem;}
+.opts{display:flex;flex-direction:column;gap:.75rem;}
+.opt{background:var(--darker);border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:.9rem;font-size:.88rem;}
+.opt:hover{border-color:rgba(201,168,76,0.4);}
+.opt.ok{border-color:var(--green) !important;background:rgba(46,204,143,0.09) !important;}
+.opt.bad{border-color:var(--red) !important;background:rgba(224,92,92,0.09) !important;}
+.oltr{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;font-size:.73rem;font-weight:700;flex-shrink:0;}
+.fb{margin-top:1rem;padding:.9rem 1rem;border-radius:6px;font-size:.83rem;display:none;}
+.fb.show{display:block;}
+.fb.fok{background:rgba(46,204,143,0.1);border:1px solid rgba(46,204,143,0.3);color:#2ECC8F;}
+.fb.fbad{background:rgba(224,92,92,0.1);border:1px solid rgba(224,92,92,0.3);color:#E05C5C;}
+.qnav{display:flex;justify-content:flex-end;margin-top:1.5rem;}
+
+/* RESULTS */
+.rbox{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:3rem;max-width:580px;margin:0 auto;text-align:center;}
+.sring{width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:1.5rem auto;}
+.sinr{width:110px;height:110px;border-radius:50%;background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.snum{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gold);}
+.stot{font-size:.75rem;color:var(--muted);}
+.slabel{font-size:1.05rem;font-weight:600;margin:1rem 0 .4rem;}
+.sfb{color:var(--muted);font-size:.88rem;margin-bottom:1.5rem;line-height:1.7;}
+.bdown{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;text-align:left;margin:1.2rem 0 1.8rem;}
+.bi{background:var(--darker);border-radius:6px;padding:.75rem;}
+.bil{font-size:.72rem;color:var(--muted);margin-bottom:.2rem;}
+.biv{font-weight:600;font-size:.92rem;}
+
+/* REG */
+.regbox{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2.5rem;max-width:520px;margin:0 auto;}
+.regbox h3{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:.4rem;}
+.regsub{color:var(--muted);font-size:.83rem;margin-bottom:1.8rem;}
+.sucbox{text-align:center;padding:3rem 2rem;max-width:520px;margin:0 auto;}
+.sucbox .suci{font-size:4rem;margin-bottom:1rem;}
+.sucbox h3{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--green);margin-bottom:.8rem;}
+.sucbox p{color:var(--muted);margin-bottom:1.5rem;}
+.regid{font-family:monospace;background:var(--darker);border:1px solid var(--border);padding:.5rem 1rem;border-radius:4px;font-size:.85rem;color:var(--gold);display:inline-block;margin:.8rem 0;}
+
+@media(max-width:600px){.nav-links{display:none;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Global<span>Path</span></div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')">Home</a></li>
+    <li><a onclick="showPage('destinations')">Destinations</a></li>
+    <li><a onclick="showPage('exam')">Take Exam</a></li>
+    <li><a onclick="showPage('about')">About</a></li>
+  </ul>
+  <button class="nav-cta" onclick="showPage('exam')">Start Assessment $20</button>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="badge">Trusted Global Migration Platform</div>
+    <h1>Your Path to <em>Global Opportunities</em> Starts Here</h1>
+    <p class="hero-sub">We help you migrate to 10 countries worldwide. Take our certified assessment, explore top universities and jobs, and begin your journey today.</p>
+    <div class="hero-btns">
+      <button class="btn-gold" onclick="showPage('exam')">Take Assessment $20</button>
+      <button class="btn-out" onclick="showPage('destinations')">Explore Destinations</button>
+    </div>
+    <div class="stats">
+      <div><div class="snum">50K+</div><div class="slbl">Successful Migrants</div></div>
+      <div><div class="snum">10</div><div class="slbl">Countries Covered</div></div>
+      <div><div class="snum">500+</div><div class="slbl">Partner Universities</div></div>
+      <div><div class="snum">98%</div><div class="slbl">Satisfaction Rate</div></div>
+    </div>
+    <p style="color:var(--muted);font-size:.8rem;margin-top:2.5rem;margin-bottom:.8rem;">Click a flag to explore:</p>
+    <div class="flag-row">
+      <div class="flag-btn" onclick="openCountry('usa')">&#127482;&#127480;<span>USA</span></div>
+      <div class="flag-btn" onclick="openCountry('uk')">&#127468;&#127463;<span>UK</span></div>
+      <div class="flag-btn" onclick="openCountry('australia')">&#127462;&#127482;<span>Australia</span></div>
+      <div class="flag-btn" onclick="openCountry('philippines')">&#127477;&#127469;<span>Philippines</span></div>
+      <div class="flag-btn" onclick="openCountry('mexico')">&#127474;&#127485;<span>Mexico</span></div>
+      <div class="flag-btn" onclick="openCountry('qatar')">&#127478;&#127462;<span>Qatar</span></div>
+      <div class="flag-btn" onclick="openCountry('dubai')">&#127462;&#127466;<span>Dubai</span></div>
+      <div class="flag-btn" onclick="openCountry('italy')">&#127470;&#127481;<span>Italy</span></div>
+      <div class="flag-btn" onclick="openCountry('germany')">&#127465;&#127466;<span>Germany</span></div>
+      <div class="flag-btn" onclick="openCountry('france')">&#127467;&#127479;<span>France</span></div>
+    </div>
+  </div>
+</div>
+<div class="how">
+  <div class="sec-title">How It Works</div>
+  <p class="sec-sub">Four simple steps to your new life abroad</p>
+  <div class="steps">
+    <div class="step"><div class="step-icon">&#127758;</div><div class="step-title">1. Choose Destination</div><p class="step-desc">Browse 10 countries and explore universities, jobs and visa types.</p></div>
+    <div class="step"><div class="step-icon">&#128221;</div><div class="step-title">2. Take Assessment</div><p class="step-desc">Pay $20 and take our certified migration test. Get instant scores.</p></div>
+    <div class="step"><div class="step-icon">&#128202;</div><div class="step-title">3. Get Results</div><p class="step-desc">Receive your eligibility report with score and recommended pathways.</p></div>
+    <div class="step"><div class="step-icon">&#9992;</div><div class="step-title">4. Register and Migrate</div><p class="step-desc">Complete registration and connect with our migration consultants.</p></div>
+  </div>
+</div>
+</div>
+
+
+
+
 
 <!-- DESTINATIONS -->
 
