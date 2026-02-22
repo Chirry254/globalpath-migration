@@ -751,10 +751,102 @@ window.onload = function() {
     showPage("home");
   }
 };
+
+
+// Copyright year
+document.getElementById('cpyear').textContent = new Date().getFullYear();
+
+// FAQ toggle
+function toggleFaq(el) {
+  var ans = el.nextElementSibling;
+  var arr = el.querySelector('.faq-arr');
+  var isOpen = ans.classList.contains('open');
+  document.querySelectorAll('.faq-a.open').forEach(function(a){ a.classList.remove('open'); });
+  document.querySelectorAll('.faq-arr.open').forEach(function(a){ a.classList.remove('open'); });
+  if (!isOpen) { ans.classList.add('open'); arr.classList.add('open'); }
+}
+
+// Chat
+function openChat() {
+  document.getElementById('chat-window').style.display = 'flex';
+  document.getElementById('chat-bubble').style.display = 'none';
+}
+function closeChat() {
+  document.getElementById('chat-window').style.display = 'none';
+  document.getElementById('chat-bubble').style.display = 'flex';
+}
+
+var chatResponses = {
+  'pay': 'The assessment costs <strong>$20 USD</strong>. We accept Visa, Mastercard and PayPal through Stripe secure checkout. Click <em>Take Assessment</em> on any country page to get started.',
+  'payment': 'The assessment costs <strong>$20 USD</strong>. We accept Visa, Mastercard and PayPal through Stripe secure checkout.',
+  'cost': 'The assessment fee is <strong>$20 USD</strong> per country. Payment is secure via Stripe.',
+  'refund': 'Assessment fees are non-refundable once the exam is started. If you had a payment issue without accessing the exam, contact us within 48 hours.',
+  'paypal': 'Yes! PayPal is accepted. You will see the PayPal option on the Stripe checkout page after clicking Pay Now.',
+  'visa': 'Yes, Visa and Mastercard debit or credit cards are accepted through our secure Stripe checkout.',
+  'country': 'We cover 10 countries: USA, Canada, UK, Australia, Germany, New Zealand, Netherlands, France, UAE and Japan. Click the flags on the home page to explore each one.',
+  'countries': 'We cover 10 countries: USA, Canada, UK, Australia, Germany, New Zealand, Netherlands, France, UAE and Japan.',
+  'eligib': 'Eligibility depends on your education, work experience, language skills, age, and finances. Our assessment evaluates all these factors for your chosen country.',
+  'exam': 'The assessment has 20 questions and takes 10-15 minutes. After completing it you get an instant eligibility score and a detailed report with next steps.',
+  'test': 'The assessment has 20 questions and takes 10-15 minutes. You get instant results after completing it.',
+  'result': 'You receive an instant eligibility score and a detailed report showing your strengths, areas to improve, and recommended next steps.',
+  'how long': 'The assessment takes about 10-15 minutes. Results are instant.',
+  'retake': 'Yes, you can retake the assessment but each attempt requires a new $20 payment.',
+  'navigate': 'Use the flags on the home page to explore countries, or click <em>Take Assessment</em> to start the exam. You can also view our FAQs from the menu.',
+  'show me all countries': null, // handled separately
+  'hello': 'Hello! How can I help you with your migration journey today?',
+  'hi': 'Hi there! Ask me anything about payments, countries, or the assessment exam.',
+  'help': 'I can help with: payments, country eligibility, the assessment exam, or navigating the site. What would you like to know?'
+};
+
+function chatQuick(msg) {
+  addChatMsg(msg, 'user');
+  setTimeout(function(){ respondChat(msg.toLowerCase()); }, 400);
+}
+
+function sendChat() {
+  var input = document.getElementById('chat-input');
+  var msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+  addChatMsg(msg, 'user');
+  setTimeout(function(){ respondChat(msg.toLowerCase()); }, 400);
+}
+
+function addChatMsg(text, type) {
+  var msgs = document.getElementById('chat-messages');
+  var div = document.createElement('div');
+  div.className = 'chat-msg ' + type;
+  div.innerHTML = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function respondChat(msg) {
+  if (msg === 'show me all countries') {
+    showPage('countries');
+    closeChat();
+    addChatMsg('Taking you to the countries page now!', 'bot');
+    return;
+  }
+  if (msg.indexOf('faq') > -1) {
+    showPage('faq');
+    closeChat();
+    return;
+  }
+  var reply = 'I am not sure about that. Try asking about <strong>payments</strong>, <strong>countries</strong>, or the <strong>assessment exam</strong>. Or visit our <a href="#" onclick="showPage('faq');closeChat();" style="color:var(--gold);">FAQ page</a>.';
+  for (var key in chatResponses) {
+    if (msg.indexOf(key) > -1) {
+      if (chatResponses[key] === null) return;
+      reply = chatResponses[key];
+      break;
+    }
+  }
+  addChatMsg(reply, 'bot');
+}
 </script>
 
 <!-- FAQ SECTION -->
-<div id="page-faq" style="display:none;">
+<div id="page-faq" class="page">
   <div style="max-width:800px;margin:0 auto;padding:2rem 1rem;">
     <div style="text-align:center;margin-bottom:2.5rem;">
       <div style="font-size:2.5rem;margin-bottom:1rem;">&#10067;</div>
@@ -887,98 +979,7 @@ window.onload = function() {
 #chat-input-row button{background:var(--gold);border:none;color:var(--dark);padding:.6rem .9rem;border-radius:6px;cursor:pointer;margin-left:.5rem;font-size:1rem;}
 </style>
 
-<script>
-// Copyright year
-document.getElementById('cpyear').textContent = new Date().getFullYear();
 
-// FAQ toggle
-function toggleFaq(el) {
-  var ans = el.nextElementSibling;
-  var arr = el.querySelector('.faq-arr');
-  var isOpen = ans.classList.contains('open');
-  document.querySelectorAll('.faq-a.open').forEach(function(a){ a.classList.remove('open'); });
-  document.querySelectorAll('.faq-arr.open').forEach(function(a){ a.classList.remove('open'); });
-  if (!isOpen) { ans.classList.add('open'); arr.classList.add('open'); }
-}
-
-// Chat
-function openChat() {
-  document.getElementById('chat-window').style.display = 'flex';
-  document.getElementById('chat-bubble').style.display = 'none';
-}
-function closeChat() {
-  document.getElementById('chat-window').style.display = 'none';
-  document.getElementById('chat-bubble').style.display = 'flex';
-}
-
-var chatResponses = {
-  'pay': 'The assessment costs <strong>$20 USD</strong>. We accept Visa, Mastercard and PayPal through Stripe secure checkout. Click <em>Take Assessment</em> on any country page to get started.',
-  'payment': 'The assessment costs <strong>$20 USD</strong>. We accept Visa, Mastercard and PayPal through Stripe secure checkout.',
-  'cost': 'The assessment fee is <strong>$20 USD</strong> per country. Payment is secure via Stripe.',
-  'refund': 'Assessment fees are non-refundable once the exam is started. If you had a payment issue without accessing the exam, contact us within 48 hours.',
-  'paypal': 'Yes! PayPal is accepted. You will see the PayPal option on the Stripe checkout page after clicking Pay Now.',
-  'visa': 'Yes, Visa and Mastercard debit or credit cards are accepted through our secure Stripe checkout.',
-  'country': 'We cover 10 countries: USA, Canada, UK, Australia, Germany, New Zealand, Netherlands, France, UAE and Japan. Click the flags on the home page to explore each one.',
-  'countries': 'We cover 10 countries: USA, Canada, UK, Australia, Germany, New Zealand, Netherlands, France, UAE and Japan.',
-  'eligib': 'Eligibility depends on your education, work experience, language skills, age, and finances. Our assessment evaluates all these factors for your chosen country.',
-  'exam': 'The assessment has 20 questions and takes 10-15 minutes. After completing it you get an instant eligibility score and a detailed report with next steps.',
-  'test': 'The assessment has 20 questions and takes 10-15 minutes. You get instant results after completing it.',
-  'result': 'You receive an instant eligibility score and a detailed report showing your strengths, areas to improve, and recommended next steps.',
-  'how long': 'The assessment takes about 10-15 minutes. Results are instant.',
-  'retake': 'Yes, you can retake the assessment but each attempt requires a new $20 payment.',
-  'navigate': 'Use the flags on the home page to explore countries, or click <em>Take Assessment</em> to start the exam. You can also view our FAQs from the menu.',
-  'show me all countries': null, // handled separately
-  'hello': 'Hello! How can I help you with your migration journey today?',
-  'hi': 'Hi there! Ask me anything about payments, countries, or the assessment exam.',
-  'help': 'I can help with: payments, country eligibility, the assessment exam, or navigating the site. What would you like to know?'
-};
-
-function chatQuick(msg) {
-  addChatMsg(msg, 'user');
-  setTimeout(function(){ respondChat(msg.toLowerCase()); }, 400);
-}
-
-function sendChat() {
-  var input = document.getElementById('chat-input');
-  var msg = input.value.trim();
-  if (!msg) return;
-  input.value = '';
-  addChatMsg(msg, 'user');
-  setTimeout(function(){ respondChat(msg.toLowerCase()); }, 400);
-}
-
-function addChatMsg(text, type) {
-  var msgs = document.getElementById('chat-messages');
-  var div = document.createElement('div');
-  div.className = 'chat-msg ' + type;
-  div.innerHTML = text;
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-}
-
-function respondChat(msg) {
-  if (msg === 'show me all countries') {
-    showPage('countries');
-    closeChat();
-    addChatMsg('Taking you to the countries page now!', 'bot');
-    return;
-  }
-  if (msg.indexOf('faq') > -1) {
-    showPage('faq');
-    closeChat();
-    return;
-  }
-  var reply = 'I am not sure about that. Try asking about <strong>payments</strong>, <strong>countries</strong>, or the <strong>assessment exam</strong>. Or visit our <a href="#" onclick="showPage('faq');closeChat();" style="color:var(--gold);">FAQ page</a>.';
-  for (var key in chatResponses) {
-    if (msg.indexOf(key) > -1) {
-      if (chatResponses[key] === null) return;
-      reply = chatResponses[key];
-      break;
-    }
-  }
-  addChatMsg(reply, 'bot');
-}
-</script>
 
 </body>
 </html>
