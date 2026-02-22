@@ -83,6 +83,55 @@ h1 em{color:var(--gold);font-style:normal;}
 .price{font-family:'Playfair Display',serif;font-size:3rem;color:var(--gold);margin:1rem 0;}
 .price span{font-size:1rem;color:var(--muted);font-family:'DM Sans',sans-serif;}
 .feats{display:flex;gap:.7rem;justif
+</head>
+<body>
+
+<nav>
+  <div class="logo">Global<span>Path</span></div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')">Home</a></li>
+    <li><a onclick="showPage('destinations')">Destinations</a></li>
+    <li><a onclick="showPage('exam')">Take Exam</a></li>
+    <li><a onclick="showPage('about')">About</a></li>
+  </ul>
+  <button class="nav-cta" onclick="showPage('exam')">Start Assessment $20</button>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="badge">Trusted Global Migration Platform</div>
+    <h1>Your Path to <em>Global Opportunities</em> Starts Here</h1>
+    <p class="hero-sub">We help you migrate to 10 countries worldwide. Take our certified assessment, explore top universities and jobs, and begin your journey today.</p>
+    <div class="hero-btns">
+      <button class="btn-gold" onclick="showPage('exam')">Take Assessment $20</button>
+      <button class="btn-out" onclick="showPage('destinations')">Explore Destinations</button>
+    </div>
+    <div class="stats">
+      <div><div class="snum">50K+</div><div class="slbl">Successful Migrants</div></div>
+      <div><div class="snum">10</div><div class="slbl">Countries Covered</div></div>
+      <div><div class="snum">500+</div><div class="slbl">Partner Universities</div></div>
+      <div><div class="snum">98%</div><div class="slbl">Satisfaction Rate</div></div>
+    </div>
+    <p style="color:var(--muted);font-size:.8rem;margin-top:2.5rem;margin-bottom:.8rem;">Click a flag to explore:</p>
+    <div class="flag-row">
+      <div class="flag-btn" onclick="openCountry('usa')">&#127482;&#127480;<span>USA</span></div>
+      <div class="flag-btn" onclick="openCountry('uk')">&#127468;&#127463;<span>UK</span></div>
+      <div class="flag-btn" onclick="openCountry('australia')">&#127462;&#127482;<span>Australia</span></div>
+      <div class="flag-btn" onclick="openCountry('philippines')">&#127477;&#127469;<span>Philippines</span></div>
+      <div class="flag-btn" onclick="openCountry('mexico')">&#127474;&#127485;<span>Mexico</span></div>
+      <div class="flag-btn" onclick="openCountry('qatar')">&#127478;&#127462;<span>Qatar</span></div>
+      <div class="flag-btn" onclick="openCountry('dubai')">&#127462;&#127466;<span>Dubai</span></div>
+      <div class="flag-btn" onclick="openCountry('italy')">&#127470;&#127481;<span>Italy</span></div>
+      <div class="flag-btn" onclick="openCountry('germany')">&#127465;&#127466;<span>Germany</span></div>
+      <div class="flag-btn" onclick="openCountry('france')">&#127467;&#127479;<span>France</span></div>
+    </div>
+  </div>
+</div>
+
 <!-- TESTIMONIALS SECTION -->
 <div style="padding:4rem 1rem;background:linear-gradient(180deg,var(--dark) 0%,#0D1220 100%);">
   <div style="max-width:1100px;margin:0 auto;">
@@ -316,54 +365,6 @@ y-content:center;flex-wrap:wrap;margin:1rem 0 1.5rem;}
 .tbadge{display:inline-block;background:rgba(46,204,143,0.1);border:1px solid rgba(46,204,143,0.3);color:#2ECC8F;border-radius:20px;padding:.25rem .8rem;font-size:.72rem;font-weight:600;}
 
 </style>
-</head>
-<body>
-
-<nav>
-  <div class="logo">Global<span>Path</span></div>
-  <ul class="nav-links">
-    <li><a onclick="showPage('home')">Home</a></li>
-    <li><a onclick="showPage('destinations')">Destinations</a></li>
-    <li><a onclick="showPage('exam')">Take Exam</a></li>
-    <li><a onclick="showPage('about')">About</a></li>
-  </ul>
-  <button class="nav-cta" onclick="showPage('exam')">Start Assessment $20</button>
-</nav>
-
-<!-- HOME -->
-<div id="page-home" class="page active">
-<div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-content">
-    <div class="badge">Trusted Global Migration Platform</div>
-    <h1>Your Path to <em>Global Opportunities</em> Starts Here</h1>
-    <p class="hero-sub">We help you migrate to 10 countries worldwide. Take our certified assessment, explore top universities and jobs, and begin your journey today.</p>
-    <div class="hero-btns">
-      <button class="btn-gold" onclick="showPage('exam')">Take Assessment $20</button>
-      <button class="btn-out" onclick="showPage('destinations')">Explore Destinations</button>
-    </div>
-    <div class="stats">
-      <div><div class="snum">50K+</div><div class="slbl">Successful Migrants</div></div>
-      <div><div class="snum">10</div><div class="slbl">Countries Covered</div></div>
-      <div><div class="snum">500+</div><div class="slbl">Partner Universities</div></div>
-      <div><div class="snum">98%</div><div class="slbl">Satisfaction Rate</div></div>
-    </div>
-    <p style="color:var(--muted);font-size:.8rem;margin-top:2.5rem;margin-bottom:.8rem;">Click a flag to explore:</p>
-    <div class="flag-row">
-      <div class="flag-btn" onclick="openCountry('usa')">&#127482;&#127480;<span>USA</span></div>
-      <div class="flag-btn" onclick="openCountry('uk')">&#127468;&#127463;<span>UK</span></div>
-      <div class="flag-btn" onclick="openCountry('australia')">&#127462;&#127482;<span>Australia</span></div>
-      <div class="flag-btn" onclick="openCountry('philippines')">&#127477;&#127469;<span>Philippines</span></div>
-      <div class="flag-btn" onclick="openCountry('mexico')">&#127474;&#127485;<span>Mexico</span></div>
-      <div class="flag-btn" onclick="openCountry('qatar')">&#127478;&#127462;<span>Qatar</span></div>
-      <div class="flag-btn" onclick="openCountry('dubai')">&#127462;&#127466;<span>Dubai</span></div>
-      <div class="flag-btn" onclick="openCountry('italy')">&#127470;&#127481;<span>Italy</span></div>
-      <div class="flag-btn" onclick="openCountry('germany')">&#127465;&#127466;<span>Germany</span></div>
-      <div class="flag-btn" onclick="openCountry('france')">&#127467;&#127479;<span>France</span></div>
-    </div>
-  </div>
-</div>
 <div class="how">
   <div class="sec-title">How It Works</div>
   <p class="sec-sub">Four simple steps to your new life abroad</p>
