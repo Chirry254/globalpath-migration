@@ -752,5 +752,233 @@ window.onload = function() {
   }
 };
 </script>
+
+<!-- FAQ SECTION -->
+<div id="page-faq" style="display:none;">
+  <div style="max-width:800px;margin:0 auto;padding:2rem 1rem;">
+    <div style="text-align:center;margin-bottom:2.5rem;">
+      <div style="font-size:2.5rem;margin-bottom:1rem;">&#10067;</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);">Frequently Asked Questions</h2>
+      <p style="color:var(--muted);">Everything you need to know about GlobalPath and your migration journey.</p>
+    </div>
+
+    <div class="faq-list">
+      <!-- Payment -->
+      <div class="faq-cat">&#128179; Payment</div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How much does the assessment cost? <span class="faq-arr">&#9660;</span></div>
+        <div class="faq-a">The migration eligibility assessment costs <strong>$20 USD</strong>. Payment is processed securely through Stripe and you can pay with Visa, Mastercard or PayPal.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Is my payment secure? <span class="faq-arr">&#9660;</span></div>
+        <div class="faq-a">Yes. All payments are processed by Stripe, one of the world's most trusted payment platforms. Your card details are never stored on our servers.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I get a refund? <span class="faq-arr">&#9660;</span></div>
+        <div class="faq-a">Assessment fees are non-refundable once the exam has been started. If you experience a payment issue without accessing the exam, contact us within 48 hours for a full refund.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Does PayPal work for payment? <span class="faq-arr">&#9660;</span></div>
+        <div class="faq-a">Yes! PayPal is accepted through our Stripe checkout. You will see the PayPal option on the payment page after clicking Pay Now.</div>
+      </div>
+
+      <!-- Country Eligibility -->
+      <div class="faq-cat">&#127758; Country Eligibility</div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Which countries does GlobalPath cover? <span class="faq-arr">&#9660;</span></div>
+        <div class="faq-a">We currently cover 10 top migration destinations: USA, Canada, UK, Australia, Germany, New Zealand, Netherlands, France, UAE and Japan. More countries are being added.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How do I know which country is right for me? <span class="faq-arr">&#9660;</span></div>
+        <div class="faq-a">Our assessment test evaluates your profile against each country's immigration requirements. You can also browse each country's page to compare requirements, visa types, and costs before taking the test.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What factors affect my eligibility? <span class="faq-arr">&#9660;</span></div>
+        <div class="faq-a">Key factors include your education level, work experience, language proficiency, age, financial status, and whether you have family connections in the destination country.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I take the assessment for multiple countries? <span class="faq-arr">&#9660;</span></div>
+        <div class="faq-a">Each assessment fee covers one country. If you would like to assess eligibility for multiple destinations, each requires a separate $20 payment.</div>
+      </div>
+
+      <!-- Exam -->
+      <div class="faq-cat">&#128221; Assessment Exam</div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How long does the assessment take? <span class="faq-arr">&#9660;</span></div>
+        <div class="faq-a">The assessment consists of 20 questions and typically takes 10 to 15 minutes to complete. Take your time — there is no time limit.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What happens after I complete the assessment? <span class="faq-arr">&#9660;</span></div>
+        <div class="faq-a">You will receive an instant eligibility score and a detailed report showing your strengths, areas to improve, and recommended next steps for your chosen destination.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I retake the assessment? <span class="faq-arr">&#9660;</span></div>
+        <div class="faq-a">Yes, but each attempt requires a new $20 payment. We recommend reviewing your results and improving your profile before retaking.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Is the assessment result a visa guarantee? <span class="faq-arr">&#9660;</span></div>
+        <div class="faq-a">No. The assessment gives you an eligibility estimate based on current immigration criteria. Final visa decisions are made by the immigration authorities of each country. We recommend consulting a licensed immigration consultant for official applications.</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:3rem;">
+      <p style="color:var(--muted);font-size:.9rem;margin-bottom:1rem;">Still have questions? Chat with our assistant.</p>
+      <button class="btn-gold" onclick="openChat()" style="padding:.8rem 2rem;">Chat with GlobalPath Assistant &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<!-- CHATBOT -->
+<div id="chat-bubble" onclick="openChat()" title="GlobalPath Assistant">&#129302;</div>
+
+<div id="chat-window" style="display:none;">
+  <div id="chat-header">
+    <div style="display:flex;align-items:center;gap:.8rem;">
+      <div style="font-size:1.5rem;">&#129302;</div>
+      <div>
+        <div style="font-weight:700;font-size:.95rem;">GlobalPath Assistant</div>
+        <div style="font-size:.72rem;color:rgba(255,255,255,0.7);">&#9679; Online</div>
+      </div>
+    </div>
+    <button onclick="closeChat()" style="background:none;border:none;color:white;font-size:1.3rem;cursor:pointer;">&#10005;</button>
+  </div>
+  <div id="chat-messages">
+    <div class="chat-msg bot">Hello! I am the GlobalPath Assistant. I can help you with payments, country eligibility, the assessment exam, or navigating the site. What would you like to know?</div>
+    <div class="chat-quick-btns">
+      <button class="chat-quick" onclick="chatQuick('How do I pay?')">How do I pay?</button>
+      <button class="chat-quick" onclick="chatQuick('Which country suits me?')">Which country suits me?</button>
+      <button class="chat-quick" onclick="chatQuick('How does the exam work?')">How does the exam work?</button>
+      <button class="chat-quick" onclick="chatQuick('Show me all countries')">Show me all countries</button>
+    </div>
+  </div>
+  <div id="chat-input-row">
+    <input type="text" id="chat-input" placeholder="Type your question..." onkeydown="if(event.key==='Enter')sendChat()">
+    <button onclick="sendChat()">&#10148;</button>
+  </div>
+</div>
+
+<style>
+/* FAQ */
+.faq-cat{color:var(--gold);font-size:.78rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin:2rem 0 .8rem;}
+.faq-item{border:1px solid var(--border);border-radius:8px;margin-bottom:.6rem;overflow:hidden;}
+.faq-q{padding:1rem 1.2rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:.92rem;font-weight:500;transition:.2s;user-select:none;}
+.faq-q:hover{background:var(--surface);}
+.faq-a{padding:0 1.2rem;max-height:0;overflow:hidden;font-size:.87rem;color:var(--muted);line-height:1.8;transition:max-height .3s ease,padding .3s ease;}
+.faq-a.open{max-height:200px;padding:0 1.2rem 1rem;}
+.faq-arr{font-size:.75rem;transition:transform .3s;color:var(--gold);}
+.faq-arr.open{transform:rotate(180deg);}
+
+/* Chat bubble */
+#chat-bubble{position:fixed;bottom:2rem;right:2rem;width:60px;height:60px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;cursor:pointer;box-shadow:0 4px 20px rgba(201,168,76,0.4);z-index:1000;transition:.3s;}
+#chat-bubble:hover{transform:scale(1.1);}
+
+/* Chat window */
+#chat-window{position:fixed;bottom:6rem;right:2rem;width:340px;max-height:500px;background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,0.4);z-index:1001;display:flex;flex-direction:column;overflow:hidden;}
+#chat-header{background:linear-gradient(135deg,#1A2035,#2A3355);padding:1rem 1.2rem;display:flex;justify-content:space-between;align-items:center;}
+#chat-messages{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.6rem;max-height:320px;}
+.chat-msg{padding:.7rem 1rem;border-radius:10px;font-size:.85rem;line-height:1.6;max-width:85%;}
+.chat-msg.bot{background:var(--darker);color:var(--text);align-self:flex-start;border-bottom-left-radius:2px;}
+.chat-msg.user{background:var(--gold);color:var(--dark);align-self:flex-end;border-bottom-right-radius:2px;}
+.chat-quick-btns{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.3rem;}
+.chat-quick{background:transparent;border:1px solid var(--border);color:var(--gold);border-radius:20px;padding:.3rem .8rem;font-size:.75rem;cursor:pointer;transition:.2s;}
+.chat-quick:hover{background:var(--gold);color:var(--dark);}
+#chat-input-row{display:flex;border-top:1px solid var(--border);padding:.6rem;}
+#chat-input{flex:1;background:var(--darker);border:none;color:var(--text);padding:.6rem .8rem;border-radius:6px;font-size:.85rem;outline:none;}
+#chat-input-row button{background:var(--gold);border:none;color:var(--dark);padding:.6rem .9rem;border-radius:6px;cursor:pointer;margin-left:.5rem;font-size:1rem;}
+</style>
+
+<script>
+// Copyright year
+document.getElementById('cpyear').textContent = new Date().getFullYear();
+
+// FAQ toggle
+function toggleFaq(el) {
+  var ans = el.nextElementSibling;
+  var arr = el.querySelector('.faq-arr');
+  var isOpen = ans.classList.contains('open');
+  document.querySelectorAll('.faq-a.open').forEach(function(a){ a.classList.remove('open'); });
+  document.querySelectorAll('.faq-arr.open').forEach(function(a){ a.classList.remove('open'); });
+  if (!isOpen) { ans.classList.add('open'); arr.classList.add('open'); }
+}
+
+// Chat
+function openChat() {
+  document.getElementById('chat-window').style.display = 'flex';
+  document.getElementById('chat-bubble').style.display = 'none';
+}
+function closeChat() {
+  document.getElementById('chat-window').style.display = 'none';
+  document.getElementById('chat-bubble').style.display = 'flex';
+}
+
+var chatResponses = {
+  'pay': 'The assessment costs <strong>$20 USD</strong>. We accept Visa, Mastercard and PayPal through Stripe secure checkout. Click <em>Take Assessment</em> on any country page to get started.',
+  'payment': 'The assessment costs <strong>$20 USD</strong>. We accept Visa, Mastercard and PayPal through Stripe secure checkout.',
+  'cost': 'The assessment fee is <strong>$20 USD</strong> per country. Payment is secure via Stripe.',
+  'refund': 'Assessment fees are non-refundable once the exam is started. If you had a payment issue without accessing the exam, contact us within 48 hours.',
+  'paypal': 'Yes! PayPal is accepted. You will see the PayPal option on the Stripe checkout page after clicking Pay Now.',
+  'visa': 'Yes, Visa and Mastercard debit or credit cards are accepted through our secure Stripe checkout.',
+  'country': 'We cover 10 countries: USA, Canada, UK, Australia, Germany, New Zealand, Netherlands, France, UAE and Japan. Click the flags on the home page to explore each one.',
+  'countries': 'We cover 10 countries: USA, Canada, UK, Australia, Germany, New Zealand, Netherlands, France, UAE and Japan.',
+  'eligib': 'Eligibility depends on your education, work experience, language skills, age, and finances. Our assessment evaluates all these factors for your chosen country.',
+  'exam': 'The assessment has 20 questions and takes 10-15 minutes. After completing it you get an instant eligibility score and a detailed report with next steps.',
+  'test': 'The assessment has 20 questions and takes 10-15 minutes. You get instant results after completing it.',
+  'result': 'You receive an instant eligibility score and a detailed report showing your strengths, areas to improve, and recommended next steps.',
+  'how long': 'The assessment takes about 10-15 minutes. Results are instant.',
+  'retake': 'Yes, you can retake the assessment but each attempt requires a new $20 payment.',
+  'navigate': 'Use the flags on the home page to explore countries, or click <em>Take Assessment</em> to start the exam. You can also view our FAQs from the menu.',
+  'show me all countries': null, // handled separately
+  'hello': 'Hello! How can I help you with your migration journey today?',
+  'hi': 'Hi there! Ask me anything about payments, countries, or the assessment exam.',
+  'help': 'I can help with: payments, country eligibility, the assessment exam, or navigating the site. What would you like to know?'
+};
+
+function chatQuick(msg) {
+  addChatMsg(msg, 'user');
+  setTimeout(function(){ respondChat(msg.toLowerCase()); }, 400);
+}
+
+function sendChat() {
+  var input = document.getElementById('chat-input');
+  var msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+  addChatMsg(msg, 'user');
+  setTimeout(function(){ respondChat(msg.toLowerCase()); }, 400);
+}
+
+function addChatMsg(text, type) {
+  var msgs = document.getElementById('chat-messages');
+  var div = document.createElement('div');
+  div.className = 'chat-msg ' + type;
+  div.innerHTML = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function respondChat(msg) {
+  if (msg === 'show me all countries') {
+    showPage('countries');
+    closeChat();
+    addChatMsg('Taking you to the countries page now!', 'bot');
+    return;
+  }
+  if (msg.indexOf('faq') > -1) {
+    showPage('faq');
+    closeChat();
+    return;
+  }
+  var reply = 'I am not sure about that. Try asking about <strong>payments</strong>, <strong>countries</strong>, or the <strong>assessment exam</strong>. Or visit our <a href="#" onclick="showPage('faq');closeChat();" style="color:var(--gold);">FAQ page</a>.';
+  for (var key in chatResponses) {
+    if (msg.indexOf(key) > -1) {
+      if (chatResponses[key] === null) return;
+      reply = chatResponses[key];
+      break;
+    }
+  }
+  addChatMsg(reply, 'bot');
+}
+</script>
+
 </body>
 </html>
