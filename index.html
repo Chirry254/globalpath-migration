@@ -834,7 +834,7 @@ function respondChat(msg) {
     closeChat();
     return;
   }
-  var reply = 'I am not sure about that. Try asking about <strong>payments</strong>, <strong>countries</strong>, or the <strong>assessment exam</strong>. Or visit our <a href="#" onclick="showPage('faq');closeChat();" style="color:var(--gold);">FAQ page</a>.';
+  var reply = "I am not sure about that. Try asking about payments, countries, or the assessment exam. Click the FAQs button in the menu for more help.";
   for (var key in chatResponses) {
     if (msg.indexOf(key) > -1) {
       if (chatResponses[key] === null) return;
