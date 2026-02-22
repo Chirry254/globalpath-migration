@@ -917,7 +917,7 @@ window.onload = function() {
 
 
 // Copyright year
-document.getElementById('cpyear').textContent = new Date().getFullYear();
+var cpyr = document.getElementById('cpyear'); if(cpyr) cpyr.textContent = new Date().getFullYear();
 
 // FAQ toggle
 function toggleFaq(el) {
@@ -1157,5 +1157,14 @@ function respondChat(msg) {
 
 
 
+
+<footer style="background:#060810;border-top:1px solid rgba(201,168,76,0.15);padding:2rem 1rem;text-align:center;">
+  <div style="color:var(--muted);font-size:.82rem;">
+    &copy; <span id="cpyear"></span> GlobalPath Migration Platform. All rights reserved.
+  </div>
+  <div style="color:var(--muted);font-size:.75rem;margin-top:.5rem;">
+    Secure payments by Stripe &nbsp;|&nbsp; SSL Encrypted &nbsp;|&nbsp; Trusted by 4,800+ users
+  </div>
+</footer>
 </body>
 </html>
