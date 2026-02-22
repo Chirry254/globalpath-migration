@@ -686,6 +686,7 @@ function showPage(id) {
 }
 
 function openCountry(code) {
+  window.scrollTo(0,0);
   var d = DATA[code];
   if (!d) return;
   document.getElementById("dflag").textContent = d.flag;
