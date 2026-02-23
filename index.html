@@ -87,7 +87,7 @@ h1 em{color:var(--gold);font-style:normal;}
 <body>
 
 <nav>
-  <div class="logo">Global<span>Path</span></div>
+  <div class="logo" style="font-size:1.4rem;font-weight:800;">🌍 Global<span style="color:#C9A84C;">Path</span></div>
   <ul class="nav-links">
     <li><a onclick="showPage('home')">Home</a></li>
     <li><a onclick="showPage('destinations')">Destinations</a></li>
@@ -685,7 +685,7 @@ function showPage(id) {
   }
 }
 
-function openCountry(code) {
+function openCountry(code) { document.documentElement.scrollTop=0;
   window.scrollTo(0,0);
   var d = DATA[code];
   if (!d) return;
