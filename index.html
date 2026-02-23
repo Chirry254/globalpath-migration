@@ -316,6 +316,8 @@ y-content:center;flex-wrap:wrap;margin:1rem 0 1.5rem;}
 .tbadge{display:inline-block;background:rgba(46,204,143,0.1);border:1px solid rgba(46,204,143,0.3);color:#2ECC8F;border-radius:20px;padding:.25rem .8rem;font-size:.72rem;font-weight:600;}
 
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>emailjs.init("2Qpo-QbOsvXPeYN41");</script>
 </head>
 <body>
 
@@ -534,7 +536,7 @@ y-content:center;flex-wrap:wrap;margin:1rem 0 1.5rem;}
     <div class="slabel" id="scorelbl"></div>
     <div class="sfb" id="scorefb"></div>
     <div class="bdown" id="bdown"></div>
-    <button class="btn-gold" style="width:100%;margin-bottom:.8rem;" onclick="showPage('registration')">Complete Registration</button>
+    <div id="opportunities-box" style="display:none;"></div><button class="btn-gold" style="width:100%;margin-bottom:.8rem;margin-top:1rem;" onclick="showPage('registration')">Complete Registration</button>
     <button class="btn-out" style="width:100%;" onclick="showPage('exam')">Retake Assessment</button>
   </div>
 </div>
@@ -867,11 +869,32 @@ function pick(i) {
 
 function nextQ() {
   curQ++;
-  if (curQ >= 15) { showResults(); return; }
+  if (curQ >= 15) { document.getElementById("email-capture").style.display="flex"; return; }
   renderQ();
 }
 
+function submitResults() {
+  var name = document.getElementById("res-name").value.trim();
+  var email = document.getElementById("res-email").value.trim();
+  if(!name || !email){ alert("Please enter your name and email."); return; }
+  var total=20, pct=Math.round((score/total)*100), passed=score>=18;
+  emailjs.send("service_k1cbyec","template_22ja1fc",{
+    to_name:name, to_email:email, country:selCountry.name,
+    score:score+"/"+total+" ("+pct+"%)",
+    result:passed?"PASSED":"NOT PASSED",
+    message:passed?"Congratulations! You qualify to migrate to "+selCountry.name:"You need 18/20 to pass. Keep preparing!",
+    next_steps:passed?"1. Get IELTS\n2. Gather documents\n3. Apply\n4. WhatsApp: +254700000000":"1. Review requirements\n2. Contact us\n3. Retake"
+  }).then(function(){console.log("sent");},function(e){console.log(e);});
+  document.getElementById("email-capture").style.display="none";
+  showResults();
+}
 function showResults() {
+  var passed=score>=18;
+  var ob=document.getElementById("opportunities-box");
+  if(ob){
+    if(passed){ob.innerHTML="<div style='margin-top:1.5rem;background:rgba(46,204,143,0.08);border:1px solid rgba(46,204,143,0.3);border-radius:12px;padding:1.5rem;text-align:center'><div style='font-size:2rem'>&#127881;</div><div style='color:#2ECC8F;font-weight:700;font-size:1.1rem;margin:.5rem 0'>PASSED! You qualify for "+selCountry.name+"</div><div style='color:#8892A4;font-size:.85rem;margin-bottom:1rem'>Results sent to your email. Next steps:<br><br>1. Get IELTS certificate<br>2. Gather certified documents<br>3. Apply to universities or jobs in "+selCountry.name+"<br>4. Book free consultation</div><a href='https://wa.me/254700000000' target='_blank' style='display:block;background:#25D366;color:white;padding:1rem;border-radius:8px;margin-top:1rem;text-decoration:none;font-weight:700'>&#128172; Book Free WhatsApp Consultation</a></div>";ob.style.display="block";}else{ob.innerHTML="<div style='margin-top:1.5rem;background:rgba(224,92,92,0.08);border:1px solid rgba(224,92,92,0.3);border-radius:12px;padding:1.5rem;text-align:center'><div style='font-size:2rem'>&#128218;</div><div style='color:#E05C5C;font-weight:700;margin:.5rem 0'>You need 18/20 to pass</div><div style='color:#8892A4;font-size:.85rem;margin-bottom:1rem'>Score: "+score+"/20. Study and retake to unlock full migration report.</div><a href='https://wa.me/254700000000' target='_blank' style='display:block;background:#25D366;color:white;padding:1rem;border-radius:8px;text-decoration:none;font-weight:700'>&#128172; Get Help on WhatsApp</a></div>";ob.style.display="block";}
+  }
+
   var pct = Math.round((score / 15) * 100);
   var deg = Math.round(pct * 3.6);
   var lbl, fb;
@@ -1180,5 +1203,5 @@ function respondChat(msg) {
     Secure payments by Stripe &nbsp;|&nbsp; SSL Encrypted &nbsp;|&nbsp; Trusted by 4,800+ users
   </div>
 </footer>
-</body>
+<div id="email-capture" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:2000;display:flex;align-items:center;justify-content:center;"><div style="background:#141824;border:1px solid #C9A84C;border-radius:16px;padding:2rem;max-width:400px;width:90%;text-align:center;"><div style="font-size:2rem;margin-bottom:1rem;">&#127881;</div><h3 style="font-family:serif;color:#C9A84C;margin-bottom:.5rem;">Assessment Complete!</h3><p style="color:#8892A4;font-size:.88rem;margin-bottom:1.5rem;">Enter your details to receive your results and migration report by email.</p><input id="res-name" type="text" placeholder="Your Full Name" style="width:100%;background:#0A0E1A;border:1px solid #2A3355;border-radius:8px;padding:.8rem;color:white;margin-bottom:.8rem;box-sizing:border-box;"/><input id="res-email" type="email" placeholder="Your Email Address" style="width:100%;background:#0A0E1A;border:1px solid #2A3355;border-radius:8px;padding:.8rem;color:white;margin-bottom:1rem;box-sizing:border-box;"/><button onclick="submitResults()" style="width:100%;background:#C9A84C;color:#0A0E1A;border:none;border-radius:8px;padding:1rem;font-weight:700;font-size:1rem;cursor:pointer;">Get My Results &#8594;</button></div></div></body>
 </html>
