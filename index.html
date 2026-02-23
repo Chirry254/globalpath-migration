@@ -1,4 +1,3 @@
-<!-- GlobalPath v3.0 - 2025 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,59 +83,6 @@ h1 em{color:var(--gold);font-style:normal;}
 .price{font-family:'Playfair Display',serif;font-size:3rem;color:var(--gold);margin:1rem 0;}
 .price span{font-size:1rem;color:var(--muted);font-family:'DM Sans',sans-serif;}
 .feats{display:flex;gap:.7rem;justif
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>emailjs.init("2Qpo-QbOsvXPeYN41");</script>
-</head>
-<body>
-
-<nav>
-  <div class="logo" style="font-size:1.4rem;font-weight:800;letter-spacing:-0.5px;">&#127758; Global<span style="color:#C9A84C;">Path</span></div>
-  <ul class="nav-links">
-    <li><a onclick="showPage('home')">Home</a></li>
-    <li><a onclick="showPage('destinations')">Destinations</a></li>
-    <li><a onclick="showPage('exam')">Take Exam</a></li>
-    <li><a onclick="showPage('about')">About</a></li>
-  </ul>
-  <button class="nav-cta" onclick="showPage('exam')">Start Assessment $20</button>
-</nav>
-
-<!-- HOME -->
-<div id="page-home" class="page active">
-<div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-content">
-    <div class="badge">Trusted Global Migration Platform</div>
-    <h1>Your Path to <em>Global Opportunities</em> Starts Here</h1>
-    <p class="hero-sub">We help you migrate to 10 countries worldwide. Take our certified assessment, explore top universities and jobs, and begin your journey today.</p>
-    <div class="hero-btns">
-      <button class="btn-gold" onclick="showPage('exam')">Take Assessment $20</button>
-      <button class="btn-out" onclick="showPage('destinations')">Explore Destinations</button>
-    </div>
-    <div class="stats">
-      <div><div class="snum">50K+</div><div class="slbl">Successful Migrants</div></div>
-      <div><div class="snum">10</div><div class="slbl">Countries Covered</div></div>
-      <div><div class="snum">500+</div><div class="slbl">Partner Universities</div></div>
-      <div><div class="snum">98%</div><div class="slbl">Satisfaction Rate</div></div>
-    </div>
-    <p style="color:var(--muted);font-size:.8rem;margin-top:2.5rem;margin-bottom:.8rem;">Click a flag to explore:</p>
-
-
-    <div class="flag-row">
-      <div class="flag-btn" onclick="openCountry('usa')">&#127482;&#127480;<span>USA</span></div>
-      <div class="flag-btn" onclick="openCountry('uk')">&#127468;&#127463;<span>UK</span></div>
-      <div class="flag-btn" onclick="openCountry('australia')">&#127462;&#127482;<span>Australia</span></div>
-      <div class="flag-btn" onclick="openCountry('philippines')">&#127477;&#127469;<span>Philippines</span></div>
-      <div class="flag-btn" onclick="openCountry('mexico')">&#127474;&#127485;<span>Mexico</span></div>
-      <div class="flag-btn" onclick="openCountry('qatar')">&#127478;&#127462;<span>Qatar</span></div>
-      <div class="flag-btn" onclick="openCountry('dubai')">&#127462;&#127466;<span>Dubai</span></div>
-      <div class="flag-btn" onclick="openCountry('italy')">&#127470;&#127481;<span>Italy</span></div>
-      <div class="flag-btn" onclick="openCountry('germany')">&#127465;&#127466;<span>Germany</span></div>
-      <div class="flag-btn" onclick="openCountry('france')">&#127467;&#127479;<span>France</span></div>
-    </div>
-  </div>
-</div>
-
 <!-- TESTIMONIALS SECTION -->
 <div style="padding:4rem 1rem;background:linear-gradient(180deg,var(--dark) 0%,#0D1220 100%);">
   <div style="max-width:1100px;margin:0 auto;">
@@ -370,7 +316,67 @@ y-content:center;flex-wrap:wrap;margin:1rem 0 1.5rem;}
 .tbadge{display:inline-block;background:rgba(46,204,143,0.1);border:1px solid rgba(46,204,143,0.3);color:#2ECC8F;border-radius:20px;padding:.25rem .8rem;font-size:.72rem;font-weight:600;}
 
 </style>
+</head>
+<body>
 
+<nav>
+  <div class="logo">Global<span>Path</span></div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')">Home</a></li>
+    <li><a onclick="showPage('destinations')">Destinations</a></li>
+    <li><a onclick="showPage('exam')">Take Exam</a></li>
+    <li><a onclick="showPage('about')">About</a></li>
+  </ul>
+  <button class="nav-cta" onclick="showPage('exam')">Start Assessment $20</button>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="badge">Trusted Global Migration Platform</div>
+    <h1>Your Path to <em>Global Opportunities</em> Starts Here</h1>
+    <p class="hero-sub">We help you migrate to 10 countries worldwide. Take our certified assessment, explore top universities and jobs, and begin your journey today.</p>
+    <div class="hero-btns">
+      <button class="btn-gold" onclick="showPage('exam')">Take Assessment $20</button>
+      <button class="btn-out" onclick="showPage('destinations')">Explore Destinations</button>
+    </div>
+    <div class="stats">
+      <div><div class="snum">50K+</div><div class="slbl">Successful Migrants</div></div>
+      <div><div class="snum">10</div><div class="slbl">Countries Covered</div></div>
+      <div><div class="snum">500+</div><div class="slbl">Partner Universities</div></div>
+      <div><div class="snum">98%</div><div class="slbl">Satisfaction Rate</div></div>
+    </div>
+    <p style="color:var(--muted);font-size:.8rem;margin-top:2.5rem;margin-bottom:.8rem;">Click a flag to explore:</p>
+    <div class="flag-row">
+      <div class="flag-btn" onclick="openCountry('usa')">&#127482;&#127480;<span>USA</span></div>
+      <div class="flag-btn" onclick="openCountry('uk')">&#127468;&#127463;<span>UK</span></div>
+      <div class="flag-btn" onclick="openCountry('australia')">&#127462;&#127482;<span>Australia</span></div>
+      <div class="flag-btn" onclick="openCountry('philippines')">&#127477;&#127469;<span>Philippines</span></div>
+      <div class="flag-btn" onclick="openCountry('mexico')">&#127474;&#127485;<span>Mexico</span></div>
+      <div class="flag-btn" onclick="openCountry('qatar')">&#127478;&#127462;<span>Qatar</span></div>
+      <div class="flag-btn" onclick="openCountry('dubai')">&#127462;&#127466;<span>Dubai</span></div>
+      <div class="flag-btn" onclick="openCountry('italy')">&#127470;&#127481;<span>Italy</span></div>
+      <div class="flag-btn" onclick="openCountry('germany')">&#127465;&#127466;<span>Germany</span></div>
+      <div class="flag-btn" onclick="openCountry('france')">&#127467;&#127479;<span>France</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="padding:4rem 1rem;background:#0D1220;">
+<div style="max-width:1100px;margin:0 auto;text-align:center;">
+<div style="display:inline-block;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:.4rem 1.2rem;font-size:.78rem;color:#C9A84C;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:1rem;">Success Stories</div>
+<h2 style="font-family:serif;font-size:2rem;margin-bottom:.5rem;color:white;">People Who Found Their Path</h2>
+<p style="color:#8892A4;margin-bottom:2.5rem;">Join thousands who used GlobalPath to start a new chapter.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;text-align:left;">
+<div style="background:#141824;border:1px solid #2A3355;border-radius:14px;padding:1.5rem;border-top:3px solid #C9A84C;"><div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;"><div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);text-align:center;line-height:48px;font-size:1.4rem;">&#128100;</div><div><div style="font-weight:700;color:white;">James Odhiambo</div><div style="font-size:.75rem;color:#8892A4;">Nairobi to Canada</div><div style="color:#C9A84C;">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div><p style="color:#8892A4;font-size:.87rem;line-height:1.8;font-style:italic;">&ldquo;Within 8 months I had my PR card!&rdquo;</p><div style="margin-top:1rem;display:inline-block;background:rgba(46,204,143,0.1);border:1px solid rgba(46,204,143,0.3);color:#2ECC8F;border-radius:20px;padding:.25rem .8rem;font-size:.72rem;">&#9989; Permanent Resident</div></div>
+<div style="background:#141824;border:1px solid #2A3355;border-radius:14px;padding:1.5rem;border-top:3px solid #C9A84C;"><div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;"><div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#f093fb,#f5576c);text-align:center;line-height:48px;font-size:1.4rem;">&#128100;</div><div><div style="font-weight:700;color:white;">Amina Wanjiru</div><div style="font-size:.75rem;color:#8892A4;">Mombasa to UK</div><div style="color:#C9A84C;">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div><p style="color:#8892A4;font-size:.87rem;line-height:1.8;font-style:italic;">&ldquo;Best 20 dollars I ever spent. Now a nurse in London!&rdquo;</p><div style="margin-top:1rem;display:inline-block;background:rgba(46,204,143,0.1);border:1px solid rgba(46,204,143,0.3);color:#2ECC8F;border-radius:20px;padding:.25rem .8rem;font-size:.72rem;">&#9989; Skilled Worker Visa</div></div>
+<div style="background:#141824;border:1px solid #2A3355;border-radius:14px;padding:1.5rem;border-top:3px solid #C9A84C;"><div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;"><div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#4facfe,#00f2fe);text-align:center;line-height:48px;font-size:1.4rem;">&#128100;</div><div><div style="font-weight:700;color:white;">David Mwangi</div><div style="font-size:.75rem;color:#8892A4;">Kisumu to Australia</div><div style="color:#C9A84C;">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div><p style="color:#8892A4;font-size:.87rem;line-height:1.8;font-style:italic;">&ldquo;My engineering degree was highly valued. Now on pathway to citizenship!&rdquo;</p><div style="margin-top:1rem;display:inline-block;background:rgba(46,204,143,0.1);border:1px solid rgba(46,204,143,0.3);color:#2ECC8F;border-radius:20px;padding:.25rem .8rem;font-size:.72rem;">&#9989; Skilled Independent Visa</div></div>
+</div>
+</div>
+</div>
 <div class="how">
   <div class="sec-title">How It Works</div>
   <p class="sec-sub">Four simple steps to your new life abroad</p>
@@ -381,12 +387,12 @@ y-content:center;flex-wrap:wrap;margin:1rem 0 1.5rem;}
     <div class="step"><div class="step-icon">&#9992;</div><div class="step-title">4. Register and Migrate</div><p class="step-desc">Complete registration and connect with our migration consultants.</p></div>
   </div>
 </div>
-
-
-
-
-
 </div>
+
+
+
+
+
 <!-- DESTINATIONS -->
 
 <div id="page-destinations" class="page">
@@ -474,7 +480,7 @@ y-content:center;flex-wrap:wrap;margin:1rem 0 1.5rem;}
     <div class="sbadges">
       <span class="sbadge">&#128179; Visa/Mastercard</span><span class="sbadge">&#127837; PayPal</span><span class="sbadge">&#128274; SSL Secure</span><span class="sbadge">&#9989; Stripe Protected</span>
     </div>
-    <p style="text-align:center;color:var(--muted);font-size:.73rem;margin-top:1rem;"></p>
+    <p style="text-align:center;color:var(--muted);font-size:.73rem;margin-top:1rem;">Powered by M-Changa Africa. You will be redirected to complete payment.</p>
   </div>
   <div id="payinstructbox" style="display:none;max-width:500px;margin:0 auto;">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2.5rem;text-align:center;">
@@ -528,8 +534,7 @@ y-content:center;flex-wrap:wrap;margin:1rem 0 1.5rem;}
     <div class="slabel" id="scorelbl"></div>
     <div class="sfb" id="scorefb"></div>
     <div class="bdown" id="bdown"></div>
-    <div id="opportunities-box" style="display:none;"></div>
-  <button class="btn-gold" style="width:100%;margin-bottom:.8rem;margin-top:1.5rem;" onclick="showPage('registration')">Complete Registration</button>
+    <button class="btn-gold" style="width:100%;margin-bottom:.8rem;" onclick="showPage('registration')">Complete Registration</button>
     <button class="btn-out" style="width:100%;" onclick="showPage('exam')">Retake Assessment</button>
   </div>
 </div>
@@ -686,18 +691,13 @@ function showPage(id) {
   var el = document.getElementById("page-" + id);
   if (el) {
     el.classList.add("active");
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-    window.scrollTo({top:0, left:0, behavior:'instant'});
+    window.scrollTo(0, 0);
   }
 }
 
 function openCountry(code) {
   var d = DATA[code];
   if (!d) return;
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-  window.scrollTo(0,0);
   document.getElementById("dflag").textContent = d.flag;
   document.getElementById("dname").textContent = d.name;
   document.getElementById("dtag").textContent = d.tag;
@@ -871,138 +871,27 @@ function nextQ() {
   renderQ();
 }
 
-var OPPORTUNITIES = {
-  "usa": {
-    unis: [{name:"MIT",url:"https://mit.edu/admissions"}, {name:"Harvard University",url:"https://college.harvard.edu"}, {name:"Stanford University",url:"https://admission.stanford.edu"}],
-    jobs: [{title:"Software Engineer",salary:"$120,000/yr",visa:"H-1B Visa"}, {title:"Registered Nurse",salary:"$75,000/yr",visa:"EB-3 Visa"}, {title:"Civil Engineer",salary:"$85,000/yr",visa:"H-1B Visa"}]
-  },
-  "uk": {
-    unis: [{name:"University of Oxford",url:"https://ox.ac.uk/admissions"}, {name:"University of Manchester",url:"https://manchester.ac.uk"}, {name:"UCL London",url:"https://ucl.ac.uk/prospective-students"}],
-    jobs: [{title:"IT Specialist",salary:"£45,000/yr",visa:"Skilled Worker Visa"}, {title:"Nurse",salary:"£35,000/yr",visa:"Health & Care Visa"}, {title:"Accountant",salary:"£40,000/yr",visa:"Skilled Worker Visa"}]
-  },
-  "australia": {
-    unis: [{name:"University of Melbourne",url:"https://study.unimelb.edu.au"}, {name:"ANU Canberra",url:"https://anu.edu.au/study"}, {name:"University of Sydney",url:"https://sydney.edu.au/study"}],
-    jobs: [{title:"Mining Engineer",salary:"AUD 120,000/yr",visa:"Skilled Independent Visa"}, {title:"Software Developer",salary:"AUD 95,000/yr",visa:"TSS Visa"}, {title:"Teacher",salary:"AUD 75,000/yr",visa:"Skilled Visa"}]
-  },
-  "canada": {
-    unis: [{name:"University of Toronto",url:"https://future.utoronto.ca"}, {name:"McGill University",url:"https://mcgill.ca/admissions"}, {name:"UBC Vancouver",url:"https://you.ubc.ca"}],
-    jobs: [{title:"Data Analyst",salary:"CAD 85,000/yr",visa:"Express Entry"}, {title:"Electrician",salary:"CAD 70,000/yr",visa:"PNP"}, {title:"Pharmacist",salary:"CAD 95,000/yr",visa:"Express Entry"}]
-  },
-  "germany": {
-    unis: [{name:"TU Munich",url:"https://tum.de/en/studies"}, {name:"LMU Munich",url:"https://en.uni-muenchen.de"}, {name:"Heidelberg University",url:"https://uni-heidelberg.de/en"}],
-    jobs: [{title:"Software Developer",salary:"€65,000/yr",visa:"EU Blue Card"}, {title:"Mechanical Engineer",salary:"€60,000/yr",visa:"EU Blue Card"}, {title:"Doctor",salary:"€80,000/yr",visa:"EU Blue Card"}]
-  },
-  "uae": {
-    unis: [{name:"University of Dubai",url:"https://ud.ac.ae"}, {name:"American University Dubai",url:"https://aud.edu"}, {name:"Heriot-Watt Dubai",url:"https://hw.ac.uk/dubai"}],
-    jobs: [{title:"Project Manager",salary:"AED 180,000/yr",visa:"Employment Visa"}, {title:"IT Manager",salary:"AED 200,000/yr",visa:"Employment Visa"}, {title:"Financial Analyst",salary:"AED 150,000/yr",visa:"Employment Visa"}]
-  },
-  "newzealand": {
-    unis: [{name:"University of Auckland",url:"https://auckland.ac.nz"}, {name:"Victoria University",url:"https://wgtn.ac.nz"}, {name:"University of Otago",url:"https://otago.ac.nz"}],
-    jobs: [{title:"Construction Manager",salary:"NZD 100,000/yr",visa:"Skilled Migrant"}, {title:"Nurse",salary:"NZD 70,000/yr",visa:"Skilled Migrant"}, {title:"Chef",salary:"NZD 55,000/yr",visa:"Essential Skills"}]
-  },
-  "netherlands": {
-    unis: [{name:"TU Delft",url:"https://tudelft.nl/en/education"}, {name:"University of Amsterdam",url:"https://uva.nl/en"}, {name:"Leiden University",url:"https://universiteitleiden.nl/en"}],
-    jobs: [{title:"Software Engineer",salary:"€70,000/yr",visa:"Highly Skilled Migrant"}, {title:"Data Scientist",salary:"€75,000/yr",visa:"Highly Skilled Migrant"}, {title:"Marketing Manager",salary:"€60,000/yr",visa:"Highly Skilled Migrant"}]
-  },
-  "france": {
-    unis: [{name:"Sorbonne University",url:"https://sorbonne-universite.fr/en"}, {name:"Sciences Po",url:"https://sciencespo.fr/en"}, {name:"HEC Paris",url:"https://hec.edu"}],
-    jobs: [{title:"Chef",salary:"€40,000/yr",visa:"Talent Passport"}, {title:"Software Engineer",salary:"€55,000/yr",visa:"Talent Passport"}, {title:"Researcher",salary:"€45,000/yr",visa:"Talent Passport"}]
-  },
-  "japan": {
-    unis: [{name:"University of Tokyo",url:"https://u-tokyo.ac.jp/en"}, {name:"Kyoto University",url:"https://kyoto-u.ac.jp/en"}, {name:"Osaka University",url:"https://osaka-u.ac.jp/en"}],
-    jobs: [{title:"English Teacher",salary:"¥3,000,000/yr",visa:"Instructor Visa"}, {title:"IT Engineer",salary:"¥5,000,000/yr",visa:"Engineer Visa"}, {title:"Researcher",salary:"¥4,500,000/yr",visa:"Researcher Visa"}]
-  },
-};
-
 function showResults() {
-  var total = 20;
-  var pct = Math.round((score / total) * 100);
+  var pct = Math.round((score / 15) * 100);
   var deg = Math.round(pct * 3.6);
-  var passed = score >= 18;
   var lbl, fb;
-  if (passed) {
-    lbl = "PASSED — Highly Eligible ✅";
-    fb = "Congratulations! Your score of " + score + "/20 means you are highly eligible to migrate to " + selCountry.name + ". See your personalized opportunities below.";
-  } else if (pct >= 60) {
-    lbl = "Good — Potentially Eligible";
-    fb = "Good effort! You scored " + score + "/20. You need 18/20 to pass. Review the areas below and retake to unlock your full migration report.";
-  } else {
-    lbl = "Needs Improvement";
-    fb = "You scored " + score + "/20. You need 18/20 to pass. Our consultants can help you prepare. Contact us on WhatsApp for guidance.";
-  }
+  if (pct >= 80) { lbl = "Excellent - Highly Eligible"; fb = "Outstanding! You have excellent knowledge and strong migration eligibility. Our consultants will prioritize your application."; }
+  else if (pct >= 60) { lbl = "Good - Eligible"; fb = "Good performance! You show solid knowledge. A consultant will guide you through the next steps."; }
+  else if (pct >= 40) { lbl = "Fair - Potentially Eligible"; fb = "Fair performance. With guidance you can meet migration requirements. Our team can help."; }
+  else { lbl = "Needs Improvement"; fb = "There is room for improvement. Our consultants can assist you with preparation."; }
   var ring = document.getElementById("sring");
-  ring.style.background = "conic-gradient(" + (passed ? "var(--green)" : "var(--gold)") + " " + deg + "deg, var(--mid) 0)";
+  ring.style.background = "conic-gradient(var(--gold) " + deg + "deg, var(--mid) 0)";
   document.getElementById("scorenum").textContent = score;
   document.getElementById("scorelbl").textContent = lbl;
   document.getElementById("scorefb").textContent = fb;
   document.getElementById("rclabel").textContent = selCountry.name + " Migration Assessment";
+  var correct = answers.filter(function(a) { return a.ok; }).length;
   document.getElementById("bdown").innerHTML =
-    "<div class='bi'><div class='bil'>Score</div><div class='biv' style='color:var(--gold)'>" + score + "/" + total + " (" + pct + "%)</div></div>" +
-    "<div class='bi'><div class='bil'>Status</div><div class='biv' style='color:" + (passed?"var(--green)":"var(--red)") + "'>" + (passed?"PASSED":"NOT PASSED") + "</div></div>" +
-    "<div class='bi'><div class='bil'>Pass Mark</div><div class='biv'>18/20 (90%)</div></div>" +
+    "<div class='bi'><div class='bil'>Score</div><div class='biv' style='color:var(--gold)'>" + score + "/15 (" + pct + "%)</div></div>" +
+    "<div class='bi'><div class='bil'>Correct</div><div class='biv' style='color:var(--green)'>" + correct + "</div></div>" +
+    "<div class='bi'><div class='bil'>Wrong</div><div class='biv' style='color:var(--red)'>" + (15 - correct) + "</div></div>" +
     "<div class='bi'><div class='bil'>Destination</div><div class='biv'>" + selCountry.name + "</div></div>";
-
-  // Show opportunities if passed
-  var oppBox = document.getElementById("opportunities-box");
-  if (passed && oppBox) {
-    var opp = OPPORTUNITIES[selCountry.code] || OPPORTUNITIES[selCountry.name.toLowerCase()];
-    if (opp) {
-      var uniHtml = opp.unis.map(function(u) {
-        return "<a href='" + u.url + "' target='_blank' style='display:block;background:#141824;border:1px solid #2A3355;border-radius:8px;padding:.8rem 1rem;margin-bottom:.5rem;color:var(--text);text-decoration:none;transition:.2s;'>" +
-          "<span style='color:var(--gold);font-weight:700;'>🎓 " + u.name + "</span><span style='float:right;font-size:.75rem;color:var(--muted);'>Apply →</span></a>";
-      }).join('');
-      var jobHtml = opp.jobs.map(function(j) {
-        return "<div style='background:#141824;border:1px solid #2A3355;border-radius:8px;padding:.8rem 1rem;margin-bottom:.5rem;'>" +
-          "<div style='font-weight:700;color:var(--text);'>💼 " + j.title + "</div>" +
-          "<div style='font-size:.78rem;color:var(--muted);margin-top:.3rem;'>Salary: <span style='color:var(--gold);'>" + j.salary + "</span> &nbsp;|&nbsp; Visa: " + j.visa + "</div></div>";
-      }).join('');
-      oppBox.innerHTML =
-        "<div style='margin-top:2rem;text-align:left;'>" +
-        "<div style='color:var(--gold);font-weight:700;font-size:1rem;margin-bottom:1rem;text-align:center;'>🎓 Top Universities in " + selCountry.name + "</div>" +
-        uniHtml +
-        "<div style='color:var(--gold);font-weight:700;font-size:1rem;margin:1.5rem 0 1rem;text-align:center;'>💼 In-Demand Jobs in " + selCountry.name + "</div>" +
-        jobHtml +
-        "<div style='background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.3);border-radius:10px;padding:1.2rem;margin-top:1.5rem;text-align:center;'>" +
-        "<div style='font-weight:700;margin-bottom:.5rem;'>📋 Your Next Steps</div>" +
-        "<div style='color:var(--muted);font-size:.85rem;line-height:1.8;'>1. Get your IELTS/language certificate<br>2. Gather certified documents<br>3. Apply to universities or jobs above<br>4. Book a free consultation with GlobalPath</div></div>" +
-        "<a href='https://wa.me/254700000000?text=Hi+GlobalPath,+I+scored+" + score + "/20+for+" + selCountry.name + "+and+want+guidance' target='_blank' style='display:block;background:#25D366;color:white;text-align:center;padding:1rem;border-radius:8px;margin-top:1rem;text-decoration:none;font-weight:700;'>💬 Book Free WhatsApp Consultation</a>" +
-        "</div>";
-      oppBox.style.display = "block";
-    }
-  } else if (oppBox) {
-    oppBox.innerHTML = "<div style='background:rgba(224,92,92,0.08);border:1px solid rgba(224,92,92,0.3);border-radius:10px;padding:1.5rem;margin-top:1.5rem;text-align:center;'>" +
-      "<div style='font-size:1.5rem;margin-bottom:.5rem;'>📚</div>" +
-      "<div style='font-weight:700;color:#E05C5C;margin-bottom:.5rem;'>You need 18/20 to unlock full migration report</div>" +
-      "<div style='color:var(--muted);font-size:.85rem;margin-bottom:1rem;'>Study the country requirements and retake the assessment.</div>" +
-      "<a href='https://wa.me/254700000000?text=Hi+GlobalPath,+I+need+help+preparing+for+the+" + selCountry.name + "+assessment' target='_blank' style='display:inline-block;background:#25D366;color:white;padding:.8rem 1.5rem;border-radius:8px;text-decoration:none;font-weight:700;'>💬 Get Help on WhatsApp</a>" +
-      "</div>";
-    oppBox.style.display = "block";
-  }
-
-  // Send email via EmailJS
-  var clientEmail = document.getElementById("reg-email") ? document.getElementById("reg-email").value : "";
-  var clientName = document.getElementById("reg-name") ? document.getElementById("reg-name").value : "Valued Client";
-  if (clientEmail) {
-    var nextSteps = passed ?
-      "1. Get IELTS/language certificate\n2. Gather certified documents\n3. Apply to universities/jobs\n4. Book free WhatsApp consultation: https://wa.me/254700000000" :
-      "1. Review migration requirements for " + selCountry.name + "\n2. Contact us for guidance: https://wa.me/254700000000\n3. Retake the assessment when ready";
-    emailjs.send("service_k1cbyec", "template_22ja1fc", {
-      to_name: clientName,
-      to_email: clientEmail,
-      country: selCountry.name,
-      score: score + "/" + total + " (" + pct + "%)",
-      result: passed ? "PASSED ✅" : "NOT PASSED ❌",
-      message: fb,
-      next_steps: nextSteps
-    }).then(function() {
-      console.log("Email sent!");
-    }, function(err) {
-      console.log("Email error:", err);
-    });
-  }
-
   showPage("results");
-  window.scrollTo(0,0);
 }
 
 function submitReg() {
